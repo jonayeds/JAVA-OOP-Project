@@ -1,5 +1,5 @@
 package tourpackages;
-
+abstract  class Package{
     private int packageID;
     private String packageName;
     private String tourDestination;
