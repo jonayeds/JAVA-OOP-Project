@@ -1,6 +1,6 @@
 package tourpackages;
 
-public class Package {
+abstract class Package {
     private int packageID;
     private String packageName;
     private String tourDestination;
