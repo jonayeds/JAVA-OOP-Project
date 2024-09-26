@@ -1,9 +1,9 @@
 package tourpackages;
-abstract  class Package{
-    private int packageID;
-    private String packageName;
-    private String tourDestination;
-    private double packagePrice;
+public  class Package{
+    protected int packageID;
+    protected String packageName;
+    protected String tourDestination;
+    protected double packagePrice;
 
     public Package(int packageID, String packageName, String tourDestination, double packagePrice) {
         this.packageID=packageID;
