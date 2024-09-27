@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PackageManagement {
-    List<Package> packageList;
+    public List<Package> packageList;
     public PackageManagement() {
         packageList = new ArrayList<Package>();
     }
@@ -12,8 +12,18 @@ public class PackageManagement {
         packageList.add(p);
     }
     public void displayPackages() {
+        int idx =0;
         for (Package p : packageList) {
-            System.out.println(p.packageName + " || "+ p.tourDestination+ " || "+ p.packagePrice);
+            idx++;
+            System.out.println(idx + " --> "+p.packageName + " || "+ p.tourDestination+ " || "+ p.packagePrice);
         }
+    }
+    public Package getPackageByID(int id) {
+        for (Package p : packageList) {
+            if(p.packageID == id) {
+                return p;
+            }
+        }
+        return null;
     }
 }

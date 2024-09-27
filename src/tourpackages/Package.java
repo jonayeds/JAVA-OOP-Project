@@ -4,6 +4,7 @@ public  class Package{
     protected String packageName;
     protected String tourDestination;
     protected double packagePrice;
+    int bookedBy=0;
 
     public Package(int packageID, String packageName, String tourDestination, double packagePrice) {
         this.packageID=packageID;

@@ -53,7 +53,11 @@ public class TravelManager {
                 int choice = sc.nextInt();
                 switch (choice){
                     case 1:
+                        System.out.println("Choose 1 Package");
                         packageManagement.displayPackages();
+                        System.out.print("Your choice: ");
+                        int chosenPackage = sc.nextInt();
+                        tourist.bookExistingPackage(chosenPackage);
                         break;
                     case 2:
                         System.out.println("Chosen Choice 2");
