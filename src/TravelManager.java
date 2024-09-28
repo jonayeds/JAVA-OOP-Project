@@ -57,7 +57,7 @@ public class TravelManager {
                         packageManagement.displayPackages();
                         System.out.print("Your choice: ");
                         int chosenPackage = sc.nextInt();
-                        tourist.bookExistingPackage(chosenPackage);
+                        tourist.bookExistingPackage(packageManagement.getPackageByID(chosenPackage), 0);
                         break;
                     case 2:
                         System.out.println("Chosen Choice 2");

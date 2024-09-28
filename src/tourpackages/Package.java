@@ -1,9 +1,9 @@
 package tourpackages;
 public  class Package{
     protected int packageID;
-    protected String packageName;
-    protected String tourDestination;
-    protected double packagePrice;
+    public String packageName;
+    public String tourDestination;
+    public double packagePrice;
     int bookedBy=0;
 
     public Package(int packageID, String packageName, String tourDestination, double packagePrice) {
