@@ -45,22 +45,28 @@ public class TravelManager {
             System.out.println("Welcome "+ user.getName() + "||  You are a "+ user.role);
             if(Objects.equals(user.role, "tourist")){
                 TouristManagement tourist = new TouristManagement();
+                int choice=0;
+                double pendingPayment=-0;
+                while(choice != 3){
                 System.out.println("Choices");
                 System.out.println("1 --> Book an existing Package");
                 System.out.println("2 --> Create Your Custom package");
+                System.out.println("3 --> Exit");
 
                 System.out.print("Your choice: ");
-                int choice = sc.nextInt();
-                switch (choice){
-                    case 1:
-                        System.out.println("Choose 1 Package");
-                        packageManagement.displayPackages();
-                        System.out.print("Your choice: ");
-                        int chosenPackage = sc.nextInt();
-                        tourist.bookExistingPackage(packageManagement.getPackageByID(chosenPackage), 0);
-                        break;
-                    case 2:
-                        System.out.println("Chosen Choice 2");
+                 choice = sc.nextInt();
+                    switch (choice){
+                        case 1:
+                            System.out.println("Choose 1 Package");
+                            packageManagement.displayPackages();
+                            System.out.print("Your choice: ");
+                            int chosenPackage = sc.nextInt();
+                            pendingPayment = tourist.bookExistingPackage(packageManagement.getPackageByID(chosenPackage), pendingPayment);
+                            System.out.println("Pending payment is "+pendingPayment);
+                            break;
+                        case 2:
+                            System.out.println("Chosen Choice 2");
+                    }
                 }
             }
         }

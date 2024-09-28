@@ -2,11 +2,9 @@ package users;
 
 
 import tourpackages.Package;
-import tourpackages.PackageManagement;
 
 public class TouristManagement  {
-    public void bookExistingPackage(Package selectedPackage , int paymentPending){
-        System.out.println("Pending Payment : "+selectedPackage.packagePrice);
-
+    public double bookExistingPackage(Package selectedPackage , double paymentPending){
+        return selectedPackage.packagePrice+paymentPending;
     }
 }
