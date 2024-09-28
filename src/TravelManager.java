@@ -61,7 +61,7 @@ public class TravelManager {
                             packageManagement.displayPackages();
                             System.out.print("Your choice: ");
                             int chosenPackage = sc.nextInt();
-                            pendingPayment = tourist.bookExistingPackage(packageManagement.getPackageByID(chosenPackage), pendingPayment);
+                            pendingPayment = tourist.bookExistingPackage(packageManagement.getPackageByID(chosenPackage), pendingPayment, user.getId());
                             System.out.println("Pending payment is "+pendingPayment);
                             break;
                         case 2:

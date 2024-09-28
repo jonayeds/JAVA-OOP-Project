@@ -15,12 +15,12 @@ public class PackageManagement {
         int idx =0;
         for (Package p : packageList) {
             idx++;
-            System.out.println(idx + " --> "+p.packageName + " || "+ p.tourDestination+ " || "+ p.packagePrice);
+            System.out.println(idx + " --> "+p.getPackageName() + " || "+ p.getTourDestination()+ " || "+ p.getPackagePrice());
         }
     }
     public Package getPackageByID(int id) {
         for (Package p : packageList) {
-            if(p.packageID == id) {
+            if(p.getPackageID() == id) {
                 return p;
             }
         }
