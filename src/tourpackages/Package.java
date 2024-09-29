@@ -26,13 +26,19 @@ public  class Package{
     }
     public void addToBookedBy(int touristId) {
         for(int i=0;i<bookedBy.length;i++){
-            if(bookedBy[i]==touristId){
-                break;
-            }
             if(bookedBy[i] == 0){
                 bookedBy[i] = touristId;
                 break;
             }
         }
+    }
+    public boolean isBooked(int touristId){
+        for(int i=0;i<bookedBy.length;i++){
+            if(bookedBy[i]==touristId){
+                System.out.println("Already Booked this package!!");
+                return true;
+            }
+        }
+        return false;
     }
 }
