@@ -34,6 +34,7 @@ public class TravelManager {
         userManagement.addUser(admin1);
         packageManagement.addPackage(package1);
         packageManagement.addPackage(package2);
+
         System.out.print("Enter email: ");
         String email = sc.nextLine();
         System.out.print("Enter Password: ");
@@ -48,6 +49,8 @@ public class TravelManager {
                 int choice=0;
                 double pendingPayment=-0;
                 while(choice != 3){
+                    System.out.println();
+                    System.out.println();
                 System.out.println("Choices");
                 System.out.println("1 --> Book an existing Package");
                 System.out.println("2 --> Create Your Custom package");
@@ -55,6 +58,7 @@ public class TravelManager {
 
                 System.out.print("Your choice: ");
                  choice = sc.nextInt();
+                    System.out.println();
                     switch (choice){
                         case 1:
                             System.out.println("Choose 1 Package");
@@ -63,6 +67,30 @@ public class TravelManager {
                             int chosenPackage = sc.nextInt();
                             pendingPayment = tourist.bookExistingPackage(packageManagement.getPackageByID(chosenPackage), pendingPayment, user.getId());
                             System.out.println("Pending payment is "+pendingPayment);
+                            break;
+                        case 2:
+                            System.out.println("Chosen Choice 2");
+                    }
+                }
+            }else if(Objects.equals(user.role, "admin")){
+                AdminManagement admin = new AdminManagement();
+                int choice=0;
+                while(choice != 3){
+                    System.out.println();
+                    System.out.println();
+                    System.out.println("Choices");
+                    System.out.println("1 --> Add a Package");
+                    System.out.println("2 --> Remove a package");
+                    System.out.println("3 --> Exit");
+
+                    System.out.print("Your choice: ");
+                    choice = sc.nextInt();
+                    System.out.println();
+                    switch (choice){
+                        case 1:
+
+
+
                             break;
                         case 2:
                             System.out.println("Chosen Choice 2");
