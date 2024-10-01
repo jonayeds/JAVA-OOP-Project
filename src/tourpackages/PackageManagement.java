@@ -9,14 +9,15 @@ public class PackageManagement {
         packageList = new ArrayList<Package>();
     }
     public void addPackage(Package p) {
-        System.out.println("number of packages "+packageList.size());
+//        System.out.println("number of packages "+packageList.size());
+        p.setPackageId(packageList.size());
         packageList.add(p);
     }
     public void displayPackages() {
         int idx =0;
         for (Package p : packageList) {
             idx++;
-            System.out.println(idx + " --> "+p.getPackageName() + " || "+ p.getTourDestination()+ " || "+ p.getPackagePrice());
+            System.out.println(idx + " --> "+p.getPackageName() + " || "+ p.getTourDestination()+ " || "+ p.getPackagePrice() +" || "+ p.getPackageID() );
         }
     }
     public Package getPackageByID(int id) {
