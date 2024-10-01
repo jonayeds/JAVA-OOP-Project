@@ -24,8 +24,8 @@ public class TravelManager {
 //            Tourist tourist = new Tourist(name,i,password,email );
 //            tm.addTourist(tourist);
 //        }
-        Package package1 = new Package(1,"7 days at Maldives", "Maldives",200000);
-        Package package2 = new Package(2,"7 days at Sri Lanka", "Sri Lanka",100000);
+        Package package1 = new Package("7 days at Maldives", "Maldives",200000);
+        Package package2 = new Package("7 days at Sri Lanka", "Sri Lanka",100000);
         Tourist tourist1 = new Tourist("sajjad", 1, "123456", "sajjad@jonayed.com");
         Tourist tourist2 = new Tourist("kalia", 2, "123456", "kallu@kalia.com");
         Admin admin1 = new Admin("Buta Gorila", 3, "123456", "buta@buta.com");
@@ -47,7 +47,7 @@ public class TravelManager {
             if(Objects.equals(user.role, "tourist")){
                 TouristManagement tourist = new TouristManagement();
                 int choice=0;
-                double pendingPayment=-0;
+                double pendingPayment=0;
                 while(choice != 3){
                     System.out.println();
                     System.out.println();
@@ -88,6 +88,18 @@ public class TravelManager {
                     System.out.println();
                     switch (choice){
                         case 1:
+                            System.out.print("Enter package name: ");
+                            String name = sc.nextLine();
+                            name =  sc.nextLine();
+                            System.out.println();
+                            System.out.print("Enter tour Destination: ");
+                            String destination = sc.nextLine();
+                            System.out.print("Enter tour cost: ");
+                            double cost = sc.nextDouble();
+                            Package pack = new Package(name, destination, cost);
+                            packageManagement.addPackage(pack);
+                            packageManagement.displayPackages();
+
 
 
 

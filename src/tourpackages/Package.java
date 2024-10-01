@@ -6,14 +6,16 @@ public  class Package{
     private double packagePrice;
     private int bookedBy[] = new int[4] ;
 
-    public Package(int packageID, String packageName, String tourDestination, double packagePrice) {
-        this.packageID=packageID;
+    public Package( String packageName, String tourDestination, double packagePrice) {
         this.packageName=packageName;
         this.tourDestination=tourDestination;
         this.packagePrice=packagePrice;
     }
     public int getPackageID() {
         return packageID;
+    }
+    public void setPackageId(int id){
+        this.packageID=id;
     }
     public String getPackageName() {
         return packageName;

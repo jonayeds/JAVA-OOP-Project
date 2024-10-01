@@ -9,6 +9,7 @@ public class PackageManagement {
         packageList = new ArrayList<Package>();
     }
     public void addPackage(Package p) {
+        System.out.println("number of packages "+packageList.size());
         packageList.add(p);
     }
     public void displayPackages() {
