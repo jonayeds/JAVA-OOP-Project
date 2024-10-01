@@ -9,8 +9,13 @@ public class PackageManagement {
         packageList = new ArrayList<Package>();
     }
     public void addPackage(Package p) {
-//        System.out.println("number of packages "+packageList.size());
-        p.setPackageId(packageList.size());
+        if(packageList.size()>0){
+            int id = packageList.getLast().getPackageID();
+            p.setPackageId(id+1);
+        }else{
+            p.setPackageId(1);
+        }
+
         packageList.add(p);
     }
     public void displayPackages() {
@@ -27,5 +32,18 @@ public class PackageManagement {
             }
         }
         return null;
+    }
+    public void deletePackage(int chosenPackage) {
+        int temp=0;
+        int packageId = packageList.get(chosenPackage-1).getPackageID();
+        for(int i=0; i<packageList.size(); i++) {
+            if(packageList.get(i).getPackageID() == packageId) {
+                packageList.remove(packageList.get(i));
+                break;
+            }
+        }
+//        for(int i=packageId; i<packageList.size(); i++){
+//            packageList.get(i).setPackageId(i);
+//        }
     }
 }

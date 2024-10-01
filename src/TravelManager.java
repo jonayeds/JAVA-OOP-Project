@@ -99,13 +99,14 @@ public class TravelManager {
                             Package pack = new Package(name, destination, cost);
                             packageManagement.addPackage(pack);
                             packageManagement.displayPackages();
-
-
-
-
                             break;
                         case 2:
-                            System.out.println("Chosen Choice 2");
+                            packageManagement.displayPackages();
+                            System.out.println();
+                            System.out.print("Choose a Package to Remove: ");
+                            int chosenPackage = sc.nextInt();
+                            packageManagement.deletePackage(chosenPackage);
+                            packageManagement.displayPackages();
                     }
                 }
             }
