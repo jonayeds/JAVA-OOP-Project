@@ -35,82 +35,107 @@ public class TravelManager {
         packageManagement.addPackage(package1);
         packageManagement.addPackage(package2);
 
-        System.out.print("Enter email: ");
-        String email = sc.nextLine();
-        System.out.print("Enter Password: ");
-        String password = sc.nextLine();
-        UserTemplate user = userManagement.userVerification(email, password);
-        if (user == null) {
-            System.out.println("Wrong password or email!! ");
-        }else{
-            System.out.println("Welcome "+ user.getName() + "||  You are a "+ user.role);
-            if(Objects.equals(user.role, "tourist")){
-                TouristManagement tourist = new TouristManagement();
-                int choice=0;
-                double pendingPayment=0;
-                while(choice != 3){
-                    System.out.println();
-                    System.out.println();
-                System.out.println("Choices");
-                System.out.println("1 --> Book an existing Package");
-                System.out.println("2 --> Create Your Custom package");
-                System.out.println("3 --> Exit");
+        int choice=4;
+        while(choice == 4){
+            System.out.println("1 --> Log In");
+            System.out.println("2 --> Exit");
+            System.out.print("Your Choice : ");
+            choice = sc.nextInt();
+            sc.nextLine();
+            if(choice == 2){
+                break;
+            }
 
-                System.out.print("Your choice: ");
-                 choice = sc.nextInt();
-                    System.out.println();
-                    switch (choice){
-                        case 1:
-                            System.out.println("Choose 1 Package");
-                            packageManagement.displayPackages();
-                            System.out.print("Your choice: ");
-                            int chosenPackage = sc.nextInt();
-                            pendingPayment = tourist.bookExistingPackage(packageManagement.getPackageByID(chosenPackage), pendingPayment, user.getId());
-                            System.out.println("Pending payment is "+pendingPayment);
+            System.out.print("Enter email: ");
+            String email = sc.nextLine();
+            System.out.print("Enter Password: ");
+            String password = sc.nextLine();
+            UserTemplate user = userManagement.userVerification(email, password);
+            if (user == null) {
+                System.out.println("Wrong password or email!! ");
+            }else{
+                System.out.println("Welcome "+ user.getName() + "||  You are a "+ user.role);
+                if(Objects.equals(user.role, "tourist")){
+                    TouristManagement tourist = new TouristManagement();
+
+                    double pendingPayment=0;
+                    while(choice != 3  ){
+                        System.out.println();
+                        System.out.println();
+                        System.out.println("Choices");
+                        System.out.println("1 --> Book an existing Package");
+                        System.out.println("2 --> Create Your Custom package");
+                        System.out.println("3 --> Exit");
+                        System.out.println("4 --> Log out");
+
+                        System.out.print("Your choice: ");
+                        choice = sc.nextInt();
+                        System.out.println();
+                        switch (choice){
+                            case 1:
+                                System.out.println("Choose 1 Package");
+                                packageManagement.displayPackages();
+                                System.out.print("Your choice: ");
+                                int chosenPackage = sc.nextInt();
+                                pendingPayment = tourist.bookExistingPackage(packageManagement.getPackageByID(chosenPackage), pendingPayment, user.getId());
+                                System.out.println("Pending payment is "+pendingPayment);
+                                break;
+                            case 2:
+                                System.out.println("Chosen Choice 2");
+                                break;
+                        }
+                        if(choice == 4){
+                            System.out.println("--------Logged Out Successfully--------");
                             break;
-                        case 2:
-                            System.out.println("Chosen Choice 2");
+                        }
                     }
-                }
-            }else if(Objects.equals(user.role, "admin")){
-                AdminManagement admin = new AdminManagement();
-                int choice=0;
-                while(choice != 3){
-                    System.out.println();
-                    System.out.println();
-                    System.out.println("Choices");
-                    System.out.println("1 --> Add a Package");
-                    System.out.println("2 --> Remove a package");
-                    System.out.println("3 --> Exit");
+                }else if(Objects.equals(user.role, "admin")){
+                    AdminManagement admin = new AdminManagement();
+//                int choice=0;
+                    while(choice != 3){
+                        System.out.println();
+                        System.out.println();
+                        System.out.println("Choices");
+                        System.out.println("1 --> Add a Package");
+                        System.out.println("2 --> Remove a package");
+                        System.out.println("3 --> Exit");
 
-                    System.out.print("Your choice: ");
-                    choice = sc.nextInt();
-                    System.out.println();
-                    switch (choice){
-                        case 1:
-                            System.out.print("Enter package name: ");
-                            String name = sc.nextLine();
-                            name =  sc.nextLine();
-                            System.out.println();
-                            System.out.print("Enter tour Destination: ");
-                            String destination = sc.nextLine();
-                            System.out.print("Enter tour cost: ");
-                            double cost = sc.nextDouble();
-                            Package pack = new Package(name, destination, cost);
-                            packageManagement.addPackage(pack);
-                            packageManagement.displayPackages();
+                        System.out.print("Your choice: ");
+                        choice = sc.nextInt();
+                        System.out.println();
+                        switch (choice){
+                            case 1:
+                                System.out.print("Enter package name: ");
+                                String name = sc.nextLine();
+                                name =  sc.nextLine();
+                                System.out.println();
+                                System.out.print("Enter tour Destination: ");
+                                String destination = sc.nextLine();
+                                System.out.print("Enter tour cost: ");
+                                double cost = sc.nextDouble();
+                                Package pack = new Package(name, destination, cost);
+                                packageManagement.addPackage(pack);
+                                packageManagement.displayPackages();
+                                break;
+                            case 2:
+                                packageManagement.displayPackages();
+                                System.out.println();
+                                System.out.print("Choose a Package to Remove: ");
+                                int chosenPackage = sc.nextInt();
+                                packageManagement.deletePackage(chosenPackage);
+
+                                packageManagement.displayPackages();
+                        }
+                        if(choice == 4){
+                            System.out.println("--------Logged Out Successfully--------");
                             break;
-                        case 2:
-                            packageManagement.displayPackages();
-                            System.out.println();
-                            System.out.print("Choose a Package to Remove: ");
-                            int chosenPackage = sc.nextInt();
-                            packageManagement.deletePackage(chosenPackage);
-                            packageManagement.displayPackages();
+                        }
                     }
                 }
             }
+
         }
+
 
 
     }

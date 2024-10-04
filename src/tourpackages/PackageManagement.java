@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PackageManagement {
-    public List<Package> packageList;
+    private List<Package> packageList;
     public PackageManagement() {
         packageList = new ArrayList<Package>();
     }
@@ -15,11 +15,11 @@ public class PackageManagement {
         }else{
             p.setPackageId(1);
         }
-
         packageList.add(p);
     }
     public void displayPackages() {
         int idx =0;
+        System.out.println();
         for (Package p : packageList) {
             idx++;
             System.out.println(idx + " --> "+p.getPackageName() + " || "+ p.getTourDestination()+ " || "+ p.getPackagePrice() +" || "+ p.getPackageID() );
@@ -42,8 +42,5 @@ public class PackageManagement {
                 break;
             }
         }
-//        for(int i=packageId; i<packageList.size(); i++){
-//            packageList.get(i).setPackageId(i);
-//        }
     }
 }
