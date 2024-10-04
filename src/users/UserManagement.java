@@ -6,21 +6,53 @@ import java.util.Objects;
 
 public class UserManagement {
 
-    protected List<UserTemplate> userList;
-
+    protected List<Tourist> touristList;
+    protected List<Admin> adminList;
     public UserManagement(){
-        userList = new ArrayList<UserTemplate>();
+        touristList = new ArrayList<Tourist>();
+        adminList = new ArrayList<Admin>();
     }
 
-    public UserTemplate userVerification(String email, String password){
-        for(UserTemplate user : userList){
+    public Tourist getTourist(String email, String password){
+        Tourist tourist = null;
+        for(Tourist user : touristList){
             if(Objects.equals(email, user.email) && Objects.equals(password, user.password)){
-                return user;
+                tourist = user;
+                break;
+            }
+        }
+        return tourist;
+    }
+
+    public Admin getAdmin(String email, String password){
+        Admin admin = null;
+        for(Admin user : adminList){
+            if(Objects.equals(email, user.email) && Objects.equals(password, user.password)){
+                admin = user;
+                break;
+            }
+        }
+        return admin;
+    }
+
+
+    public String userVerification(String email, String password){
+        for(Tourist user : touristList){
+            if(Objects.equals(email, user.email) && Objects.equals(password, user.password)){
+                return "tourist";
+            }
+        }
+        for(Admin user : adminList){
+            if(Objects.equals(email, user.email) && Objects.equals(password, user.password)){
+                return "admin";
             }
         }
         return null;
     }
-    public void addUser(UserTemplate user){
-        userList.add(user);
+    public void addTourist(Tourist tourist){
+        touristList.add(tourist);
+    }
+    public void addAdmin(Admin admin){
+        adminList.add(admin);
     }
 }
