@@ -13,6 +13,7 @@ import java.util.Scanner;
 // --> Tourist can not Book a package twice
 // --> Tourist`s ID will be saved in to Booked by array of the Package.
 // --> Tourist will get their Pending payment after Booking a Package.
+// --> Tourist`s pending payment will be saved Even If the tourist Logged Out.
 // --> Admin can Add or Remove A package.
 
 
