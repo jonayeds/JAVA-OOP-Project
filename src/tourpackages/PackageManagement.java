@@ -1,5 +1,7 @@
 package tourpackages;
 
+import users.UserManagement;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,9 +38,14 @@ public class PackageManagement {
     public Package getPackageByIndex(int index){
         return packageList.get(index);
     }
-    public void deletePackage(int chosenPackage) {
+    public void deletePackage(int chosenPackage, UserManagement userManagement) {
         int temp=0;
         int packageId = packageList.get(chosenPackage-1).getPackageID();
+        double packageCost = packageList.get(chosenPackage-1).getPackagePrice();
+        int[] bookedBy = packageList.get(chosenPackage-1).getBookedBy();
+        for(int i=0; i<bookedBy.length; i++){
+            userManagement.reducePendingPayment(bookedBy[i], packageCost);
+        }
         for(int i=0; i<packageList.size(); i++) {
             if(packageList.get(i).getPackageID() == packageId) {
                 packageList.remove(packageList.get(i));

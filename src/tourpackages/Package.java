@@ -34,6 +34,9 @@ public  class Package{
             }
         }
     }
+    protected int[] getBookedBy() {
+        return bookedBy;
+    }
     public boolean isBooked(int touristId){
         for(int i=0;i<bookedBy.length;i++){
             if(bookedBy[i]==touristId){

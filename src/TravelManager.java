@@ -65,7 +65,6 @@ public class TravelManager {
             System.out.print("Enter Password: ");
             String password = sc.nextLine();
             String role = userManagement.userVerification(email, password);
-            System.out.println(role);
             if(Objects.equals(role, "admin")){
                 Admin admin = userManagement.getAdmin(email, password);
                 System.out.println("Welcome "+ admin.getName() + "||  You are a "+ admin.role);
@@ -101,7 +100,7 @@ public class TravelManager {
                             System.out.println();
                             System.out.print("Choose a Package to Remove: ");
                             int chosenPackage = sc.nextInt();
-                            packageManagement.deletePackage(chosenPackage);
+                            packageManagement.deletePackage(chosenPackage, userManagement);
 
                             packageManagement.displayPackages();
                     }
