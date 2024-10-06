@@ -16,6 +16,7 @@ import java.util.Scanner;
 // --> Tourist`s pending payment will be saved Even If the tourist Logged Out.
 // --> Admin can Add or Remove A package.
 // --> A unique Package ID is added when a package is Created.
+// --> Tourist`s Pending payment will be reduced when Admin removes a package if He Booked the package earlier.
 
 
 
