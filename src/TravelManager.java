@@ -15,6 +15,7 @@ import java.util.Scanner;
 // --> Tourist will get their Pending payment after Booking a Package.
 // --> Tourist`s pending payment will be saved Even If the tourist Logged Out.
 // --> Admin can Add or Remove A package.
+// --> A unique Package ID is added when a package is Created.
 
 
 
@@ -112,7 +113,6 @@ public class TravelManager {
 
 
             }else if(Objects.equals(role, "tourist")){
-                System.out.println("hit");
                 Tourist tourist = userManagement.getTourist(email, password);
                 TouristManagement touristManagement = new TouristManagement();
 
@@ -135,7 +135,7 @@ public class TravelManager {
                             packageManagement.displayPackages();
                             System.out.print("Your choice: ");
                             int chosenPackage = sc.nextInt();
-                            pendingPayment = touristManagement.bookExistingPackage(packageManagement.getPackageByID(chosenPackage), pendingPayment, tourist.getId());
+                            pendingPayment = touristManagement.bookExistingPackage(packageManagement.getPackageByIndex(chosenPackage-1), pendingPayment, tourist.getId());
                             tourist.setPendingPayment(pendingPayment);
                             System.out.println("Pending payment is "+pendingPayment);
                             break;

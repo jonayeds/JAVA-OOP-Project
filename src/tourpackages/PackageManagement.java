@@ -33,6 +33,9 @@ public class PackageManagement {
         }
         return null;
     }
+    public Package getPackageByIndex(int index){
+        return packageList.get(index);
+    }
     public void deletePackage(int chosenPackage) {
         int temp=0;
         int packageId = packageList.get(chosenPackage-1).getPackageID();
