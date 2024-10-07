@@ -1,3 +1,5 @@
+import exceptions.UserAuthenticationException;
+import exceptions.UserChoiceException;
 import tourpackages.Package;
 import tourpackages.PackageManagement;
 import users.*;
@@ -59,6 +61,12 @@ public class TravelManager {
             sc.nextLine();
             if(choice == 2){
                 break;
+            }
+            if(choice != 1){
+                choice=4;
+//                throw new UserAuthenticationException("Wrong choice. Try again");
+                System.out.println("Wrong Choice");
+                continue;
             }
 
             System.out.print("Enter email: ");
@@ -135,10 +143,18 @@ public class TravelManager {
                             packageManagement.displayPackages();
                             System.out.print("Your choice: ");
                             int chosenPackage = sc.nextInt();
-                            pendingPayment = touristManagement.bookExistingPackage(packageManagement.getPackageByIndex(chosenPackage-1), pendingPayment, tourist.getId());
-                            tourist.setPendingPayment(pendingPayment);
-                            System.out.println("Pending payment is "+pendingPayment);
-                            break;
+                            try {
+                                pendingPayment = touristManagement.bookExistingPackage(packageManagement.getPackageByIndex(chosenPackage-1), pendingPayment, tourist.getId());
+                                tourist.setPendingPayment(pendingPayment);
+                            }catch(IndexOutOfBoundsException e) {
+                                System.out.println("Package does not exist");
+                                throw new UserChoiceException("Package Not Found");
+                            }
+                            finally {
+                                System.out.println("Pending payment is "+pendingPayment);
+                                break;
+                            }
+
                         case 2:
                             System.out.println("Chosen Choice 2");
                             break;
@@ -153,7 +169,7 @@ public class TravelManager {
 
 
             }else if(role == null) {
-                System.out.println("Wrong password or email!! ");
+                System.out.println("Wrong password or email!!!");
             }
 
         }
