@@ -117,9 +117,18 @@ public class TravelManager {
                             System.out.println();
                             System.out.print("Choose a Package to Remove: ");
                             int chosenPackage = sc.nextInt();
-                            packageManagement.deletePackage(chosenPackage, userManagement);
+                            try{
+                                packageManagement.deletePackage(chosenPackage, userManagement);
+                            }catch (IndexOutOfBoundsException e){
+                                System.out.println("Package not found");
+                                throw new UserInputException("Package not found");
+                            }
+                            finally {
+//                                sc.nextLine();
+                                packageManagement.displayPackages();
+                                break;
+                            }
 
-                            packageManagement.displayPackages();
                     }
                     if(choice == 4){
                         System.out.println("--------Logged Out Successfully--------");
