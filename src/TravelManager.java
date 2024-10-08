@@ -1,9 +1,9 @@
-import exceptions.UserAuthenticationException;
-import exceptions.UserChoiceException;
+import exceptions.UserInputException;
 import tourpackages.Package;
 import tourpackages.PackageManagement;
 import users.*;
 
+import java.util.InputMismatchException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -92,18 +92,26 @@ public class TravelManager {
                     System.out.println();
                     switch (choice){
                         case 1:
-                            System.out.print("Enter package name: ");
-                            String name = sc.nextLine();
-                            name =  sc.nextLine();
-                            System.out.println();
-                            System.out.print("Enter tour Destination: ");
-                            String destination = sc.nextLine();
-                            System.out.print("Enter tour cost: ");
-                            double cost = sc.nextDouble();
-                            Package pack = new Package(name, destination, cost);
-                            packageManagement.addPackage(pack);
-                            packageManagement.displayPackages();
-                            break;
+                                System.out.print("Enter package name: ");
+                                String name = sc.nextLine();
+                                name =  sc.nextLine();
+                                System.out.println();
+                                System.out.print("Enter tour Destination: ");
+                                String destination = sc.nextLine();
+                            try{
+                                System.out.print("Enter tour cost: ");
+                                double cost = sc.nextDouble();
+                                Package pack = new Package(name, destination, cost);
+                                packageManagement.addPackage(pack);
+                            }catch (InputMismatchException e){
+                                System.out.println("Package cost Cannot be A String!!!!");
+                                throw new UserInputException("Package cost Cannot be A String!!!!");
+                            }
+                            finally {
+                                sc.nextLine();
+                                packageManagement.displayPackages();
+                                break;
+                            }
                         case 2:
                             packageManagement.displayPackages();
                             System.out.println();
@@ -148,7 +156,7 @@ public class TravelManager {
                                 tourist.setPendingPayment(pendingPayment);
                             }catch(IndexOutOfBoundsException e) {
                                 System.out.println("Package does not exist");
-                                throw new UserChoiceException("Package Not Found");
+                                throw new UserInputException("Package Not Found");
                             }
                             finally {
                                 System.out.println("Pending payment is "+pendingPayment);
