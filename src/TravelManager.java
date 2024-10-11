@@ -43,37 +43,52 @@ public class TravelManager {
 //        }
         Package package1 = new Package("7 days at Maldives", "Maldives",200000);
         Package package2 = new Package("7 days at Sri Lanka", "Sri Lanka",100000);
-        Tourist tourist1 = new Tourist("sajjad", 1, "123456", "sajjad@jonayed.com");
-        Tourist tourist2 = new Tourist("kalia", 2, "123456", "kallu@kalia.com");
-        Admin admin1 = new Admin("Buta Gorila", 3, "123456", "buta@buta.com");
+        Tourist tourist1 = new Tourist("sajjad", "123456", "sajjad@jonayed.com");
+        Tourist tourist2 = new Tourist("kalia", "123456", "kallu@kalia.com");
+        Admin admin1 = new Admin("Buta Gorila", "123456", "buta@buta.com");
         userManagement.addTourist(tourist1);
         userManagement.addTourist(tourist2);
         userManagement.addAdmin(admin1);
         packageManagement.addPackage(package1);
         packageManagement.addPackage(package2);
+        String name="", password="", email="", role="";
 
         int choice=4;
         while(choice == 4){
             System.out.println("1 --> Log In");
             System.out.println("2 --> Exit");
+            System.out.println("3 --> Register");
             System.out.print("Your Choice : ");
             choice = sc.nextInt();
             sc.nextLine();
             if(choice == 2){
                 break;
             }
-            if(choice != 1){
+            if(choice != 1 && choice != 3){
                 choice=4;
 //                throw new UserAuthenticationException("Wrong choice. Try again");
                 System.out.println("Wrong Choice");
                 continue;
             }
 
-            System.out.print("Enter email: ");
-            String email = sc.nextLine();
-            System.out.print("Enter Password: ");
-            String password = sc.nextLine();
-            String role = userManagement.userVerification(email, password);
+            if(choice == 3){
+                System.out.print("Enter Name: ");
+                name = sc.nextLine();
+                System.out.print("Enter email: ");
+                email = sc.nextLine();
+                System.out.print("Enter Password: ");
+                password = sc.nextLine();
+                Tourist tourist = new Tourist(name, email, password);
+                userManagement.addTourist(tourist);
+                role="tourist";
+            }else {
+                System.out.print("Enter email: ");
+                email = sc.nextLine();
+                System.out.print("Enter Password: ");
+                password = sc.nextLine();
+                 role = userManagement.userVerification(email, password);
+            }
+
             if(Objects.equals(role, "admin")){
                 Admin admin = userManagement.getAdmin(email, password);
                 System.out.println("Welcome "+ admin.getName() + "||  You are a "+ admin.role);
@@ -86,14 +101,13 @@ public class TravelManager {
                     System.out.println("2 --> Remove a package");
                     System.out.println("3 --> Exit");
                     System.out.println("4 --> Log out");
-
                     System.out.print("Your choice: ");
                     choice = sc.nextInt();
                     System.out.println();
                     switch (choice){
                         case 1:
                                 System.out.print("Enter package name: ");
-                                String name = sc.nextLine();
+                                String packageName = sc.nextLine();
                                 name =  sc.nextLine();
                                 System.out.println();
                                 System.out.print("Enter tour Destination: ");
@@ -124,7 +138,6 @@ public class TravelManager {
                                 throw new UserInputException("Package not found");
                             }
                             finally {
-//                                sc.nextLine();
                                 packageManagement.displayPackages();
                                 break;
                             }
@@ -140,6 +153,7 @@ public class TravelManager {
             }else if(Objects.equals(role, "tourist")){
                 Tourist tourist = userManagement.getTourist(email, password);
                 TouristManagement touristManagement = new TouristManagement();
+                System.out.println(email + " "+ password);
 
                 double pendingPayment= tourist.getPendingPayment();
                 while(choice != 3  ){

@@ -49,6 +49,7 @@ public class UserManagement {
         }
         return null;
     }
+
     public void reducePendingPayment(int userId, double cost){
         for(Tourist user : touristList){
             if(user.id == userId){
@@ -58,9 +59,12 @@ public class UserManagement {
     }
 
     public void addTourist(Tourist tourist){
+        tourist.setId(touristList.size()+1);
         touristList.add(tourist);
+        System.out.println("Tourist added"+ touristList.size());
     }
     public void addAdmin(Admin admin){
+        admin.setId(adminList.size()+1);
         adminList.add(admin);
     }
 }

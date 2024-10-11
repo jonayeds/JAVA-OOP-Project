@@ -2,8 +2,8 @@ package users;
 
 public class Tourist extends UserTemplate {
     private double pendingPayment =0;
-    public Tourist(String name, int id, String password, String email){
-        super(name, id, password, email, "tourist");
+    public Tourist(String name, String password, String email){
+        super(name,  password, email, "tourist");
     }
 
     public double getPendingPayment() {

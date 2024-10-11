@@ -7,9 +7,8 @@ public class UserTemplate {
     protected String email;
     public String role;
 
-    public UserTemplate(String name, int id, String password, String email, String role) {
+    public UserTemplate(String name,  String password, String email, String role) {
         this.name = name;
-        this.id = id;
         this.password = password;
         this.email = email;
         this.role = role;
@@ -20,6 +19,9 @@ public class UserTemplate {
     }
     public int getId(){
         return id;
+    }
+    public void setId(int id){
+        this.id = id;
     }
         @Override
     public String toString(){
