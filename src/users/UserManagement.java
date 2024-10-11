@@ -38,6 +38,7 @@ public class UserManagement {
 
     public String userVerification(String email, String password){
         for(Tourist user : touristList){
+            System.out.println("Email: " + user.email+ " Password: " + user.password);
             if(Objects.equals(email, user.email) && Objects.equals(password, user.password)){
                 return "tourist";
             }
@@ -61,7 +62,7 @@ public class UserManagement {
     public void addTourist(Tourist tourist){
         tourist.setId(touristList.size()+1);
         touristList.add(tourist);
-        System.out.println("Tourist added"+ touristList.size());
+        System.out.println("Registration Successful ");
     }
     public void addAdmin(Admin admin){
         admin.setId(adminList.size()+1);

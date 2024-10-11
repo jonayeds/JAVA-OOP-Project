@@ -51,7 +51,7 @@ public class TravelManager {
         userManagement.addAdmin(admin1);
         packageManagement.addPackage(package1);
         packageManagement.addPackage(package2);
-        String name="", password="", email="", role="";
+
 
         int choice=4;
         while(choice == 4){
@@ -73,21 +73,22 @@ public class TravelManager {
 
             if(choice == 3){
                 System.out.print("Enter Name: ");
-                name = sc.nextLine();
+                String name = sc.nextLine();
                 System.out.print("Enter email: ");
-                email = sc.nextLine();
+                String email = sc.nextLine();
                 System.out.print("Enter Password: ");
-                password = sc.nextLine();
-                Tourist tourist = new Tourist(name, email, password);
+                String password = sc.nextLine();
+                Tourist tourist = new Tourist(name, password, email);
                 userManagement.addTourist(tourist);
-                role="tourist";
-            }else {
-                System.out.print("Enter email: ");
-                email = sc.nextLine();
-                System.out.print("Enter Password: ");
-                password = sc.nextLine();
-                 role = userManagement.userVerification(email, password);
+                choice=4;
+                continue;
             }
+
+                System.out.print("Enter email: ");
+                String email = sc.nextLine();
+                System.out.print("Enter Password: ");
+                String password = sc.nextLine();
+                String role = userManagement.userVerification(email, password);
 
             if(Objects.equals(role, "admin")){
                 Admin admin = userManagement.getAdmin(email, password);
@@ -108,14 +109,14 @@ public class TravelManager {
                         case 1:
                                 System.out.print("Enter package name: ");
                                 String packageName = sc.nextLine();
-                                name =  sc.nextLine();
+                                packageName =  sc.nextLine();
                                 System.out.println();
                                 System.out.print("Enter tour Destination: ");
                                 String destination = sc.nextLine();
                             try{
                                 System.out.print("Enter tour cost: ");
                                 double cost = sc.nextDouble();
-                                Package pack = new Package(name, destination, cost);
+                                Package pack = new Package(packageName, destination, cost);
                                 packageManagement.addPackage(pack);
                             }catch (InputMismatchException e){
                                 System.out.println("Package cost Cannot be A String!!!!");
