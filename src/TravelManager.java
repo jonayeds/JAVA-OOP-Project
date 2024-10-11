@@ -51,7 +51,7 @@ public class TravelManager {
         userManagement.addAdmin(admin1);
         packageManagement.addPackage(package1);
         packageManagement.addPackage(package2);
-
+        String name="", email="", password="", role="";
 
         int choice=4;
         while(choice == 4){
@@ -73,22 +73,24 @@ public class TravelManager {
 
             if(choice == 3){
                 System.out.print("Enter Name: ");
-                String name = sc.nextLine();
+                 name = sc.nextLine();
                 System.out.print("Enter email: ");
-                String email = sc.nextLine();
+                 email = sc.nextLine();
                 System.out.print("Enter Password: ");
-                String password = sc.nextLine();
+                 password = sc.nextLine();
                 Tourist tourist = new Tourist(name, password, email);
                 userManagement.addTourist(tourist);
-                choice=4;
-                continue;
+                choice = 0;
+                role="tourist";
+            }else {
+                System.out.print("Enter email: ");
+                 email = sc.nextLine();
+                System.out.print("Enter Password: ");
+                 password = sc.nextLine();
+                role = userManagement.userVerification(email, password);
             }
 
-                System.out.print("Enter email: ");
-                String email = sc.nextLine();
-                System.out.print("Enter Password: ");
-                String password = sc.nextLine();
-                String role = userManagement.userVerification(email, password);
+
 
             if(Objects.equals(role, "admin")){
                 Admin admin = userManagement.getAdmin(email, password);
@@ -154,7 +156,7 @@ public class TravelManager {
             }else if(Objects.equals(role, "tourist")){
                 Tourist tourist = userManagement.getTourist(email, password);
                 TouristManagement touristManagement = new TouristManagement();
-                System.out.println(email + " "+ password);
+                System.out.println("Welcome "+ tourist.getName() + "||  You are a "+ tourist.role);
 
                 double pendingPayment= tourist.getPendingPayment();
                 while(choice != 3  ){
