@@ -51,7 +51,7 @@ public class TravelManager {
         userManagement.addAdmin(admin1);
         packageManagement.addPackage(package1);
         packageManagement.addPackage(package2);
-        String name="", email="", password="", role="";
+        String name, email, password, role;
 
         int choice=4;
         while(choice == 4){
@@ -81,6 +81,7 @@ public class TravelManager {
                 Tourist tourist = new Tourist(name, password, email);
                 userManagement.addTourist(tourist);
                 choice = 0;
+                System.out.println("\n3Registration Successful ");
                 role="tourist";
             }else {
                 System.out.print("Enter email: ");

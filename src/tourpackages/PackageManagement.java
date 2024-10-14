@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PackageManagement {
-    private List<Package> packageList;
-    public PackageManagement() {
-        packageList = new ArrayList<Package>();
-    }
+    private ArrayList<Package> packageList = new ArrayList<>();
+
     public void addPackage(Package p) {
         if(packageList.size()>0){
             int id = packageList.getLast().getPackageID();

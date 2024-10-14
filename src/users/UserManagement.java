@@ -6,12 +6,8 @@ import java.util.Objects;
 
 public class UserManagement {
 
-    protected List<Tourist> touristList;
-    protected List<Admin> adminList;
-    public UserManagement(){
-        touristList = new ArrayList<Tourist>();
-        adminList = new ArrayList<Admin>();
-    }
+    protected ArrayList<Tourist> touristList = new ArrayList<>();
+    protected ArrayList<Admin> adminList = new ArrayList<>();
 
     public Tourist getTourist(String email, String password){
         Tourist tourist = null;
@@ -62,7 +58,6 @@ public class UserManagement {
     public void addTourist(Tourist tourist){
         tourist.setId(touristList.size()+1);
         touristList.add(tourist);
-        System.out.println("Registration Successful ");
     }
     public void addAdmin(Admin admin){
         admin.setId(adminList.size()+1);
