@@ -7,6 +7,7 @@ import java.util.List;
 
 public class PackageManagement {
     private ArrayList<Package> packageList = new ArrayList<>();
+    private ArrayList<Package> confirmedPackageList = new ArrayList<>();
 
     public void addPackage(Package p) {
         if(packageList.size()>0){
@@ -25,6 +26,15 @@ public class PackageManagement {
             System.out.println(idx + " --> "+p.getPackageName() + " || "+ p.getTourDestination()+ " || "+ p.getPackagePrice() +" || "+ p.getPackageID() );
         }
     }
+    public void displayConfirmedPackages() {
+        int idx =0;
+        System.out.println();
+        for (Package p : confirmedPackageList) {
+            idx++;
+            System.out.println(idx + " --> "+p.getPackageName() + " || "+ p.getTourDestination()+ " || "+ p.getPackagePrice() +" || "+ p.getPackageID() );
+        }
+    }
+
     public Package getPackageByID(int id) {
         for (Package p : packageList) {
             if(p.getPackageID() == id) {
@@ -36,11 +46,11 @@ public class PackageManagement {
     public Package getPackageByIndex(int index){
         return packageList.get(index);
     }
-    public void deletePackage(int chosenPackage, UserManagement userManagement) {
+    public void deletePackage(Package chosenPackage, UserManagement userManagement) {
         int temp=0;
-        int packageId = packageList.get(chosenPackage-1).getPackageID();
-        double packageCost = packageList.get(chosenPackage-1).getPackagePrice();
-        int[] bookedBy = packageList.get(chosenPackage-1).getBookedBy();
+        int packageId = chosenPackage.getPackageID();
+        double packageCost = chosenPackage.getPackagePrice();
+        int[] bookedBy = chosenPackage.getBookedBy();
         for(int i=0; i<bookedBy.length; i++){
             userManagement.reducePendingPayment(bookedBy[i], packageCost);
         }
@@ -51,4 +61,11 @@ public class PackageManagement {
             }
         }
     }
+    public void handleConfirmedPackage(Package p) {
+        confirmedPackageList.add(p);
+        packageList.removeIf(p1 -> p1.getPackageID() == p.getPackageID());
+
+    }
+
+
 }

@@ -30,20 +30,30 @@ public  class Package{
         for(int i=0;i<bookedBy.length;i++){
             if(bookedBy[i] == 0){
                 bookedBy[i] = touristId;
-                break;
+                return;
             }
         }
+
     }
     protected int[] getBookedBy() {
         return bookedBy;
     }
     public boolean isBooked(int touristId){
-        for(int i=0;i<bookedBy.length;i++){
-            if(bookedBy[i]==touristId){
+        for (int j : bookedBy) {
+            if (j == touristId) {
                 System.out.println("Already Booked this package!!");
                 return true;
             }
         }
         return false;
+    }
+    public boolean isConfirmed(){
+        for (int i : bookedBy) {
+            if (i == 0) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

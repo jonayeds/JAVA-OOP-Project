@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 
-
+//----------------Features-----------------
 // --> users can Log in as Tourist or admin
 // --> Can Log out
 // --> Tourist can Book an existing package
@@ -28,24 +28,12 @@ public class TravelManager {
         UserManagement userManagement = new UserManagement();
         PackageManagement packageManagement = new PackageManagement();
         Scanner sc = new Scanner(System.in);
-//        System.out.print("Enter Your name: ");
-//        String name = sc.nextLine();
-//        System.out.println();
-//        System.out.print("Enter password: ");
-//        String password = sc.nextLine();
-//        System.out.println();
-//        System.out.print("Enter your email: ");
-//        String email = sc.nextLine();
-//        System.out.println();
-//        for(int i=0; i<3; i++){
-//            Tourist tourist = new Tourist(name,i,password,email );
-//            tm.addTourist(tourist);
-//        }
+
         Package package1 = new Package("7 days at Maldives", "Maldives",200000);
         Package package2 = new Package("7 days at Sri Lanka", "Sri Lanka",100000);
         Tourist tourist1 = new Tourist("sajjad", "123456", "sajjad@jonayed.com");
-        Tourist tourist2 = new Tourist("kalia", "123456", "kallu@kalia.com");
-        Admin admin1 = new Admin("Buta Gorila", "123456", "buta@buta.com");
+        Tourist tourist2 = new Tourist("Sam Jones", "123456", "sam@gmail.com");
+        Admin admin1 = new Admin("John Stones", "123456", "john@stones.com");
         userManagement.addTourist(tourist1);
         userManagement.addTourist(tourist2);
         userManagement.addAdmin(admin1);
@@ -66,7 +54,6 @@ public class TravelManager {
             }
             if(choice != 1 && choice != 3){
                 choice=4;
-//                throw new UserAuthenticationException("Wrong choice. Try again");
                 System.out.println("Wrong Choice");
                 continue;
             }
@@ -136,7 +123,7 @@ public class TravelManager {
                             System.out.print("Choose a Package to Remove: ");
                             int chosenPackage = sc.nextInt();
                             try{
-                                packageManagement.deletePackage(chosenPackage, userManagement);
+                                packageManagement.deletePackage(packageManagement.getPackageByIndex(chosenPackage-1) , userManagement);
                             }catch (IndexOutOfBoundsException e){
                                 System.out.println("Package not found");
                                 throw new UserInputException("Package not found");
@@ -164,7 +151,7 @@ public class TravelManager {
                     System.out.println();
                     System.out.println();
                     System.out.println("Choices");
-                    System.out.println("1 --> Book an existing Package");
+                    System.out.println("1 --> Book an available Package");
                     System.out.println("2 --> Create Your Custom package");
                     System.out.println("3 --> Exit");
                     System.out.println("4 --> Log out");
@@ -179,7 +166,7 @@ public class TravelManager {
                             System.out.print("Your choice: ");
                             int chosenPackage = sc.nextInt();
                             try {
-                                pendingPayment = touristManagement.bookExistingPackage(packageManagement.getPackageByIndex(chosenPackage-1), pendingPayment, tourist.getId());
+                                pendingPayment = touristManagement.bookExistingPackage(packageManagement.getPackageByIndex(chosenPackage-1), pendingPayment, tourist.getId(), packageManagement);
                                 tourist.setPendingPayment(pendingPayment);
                             }catch(IndexOutOfBoundsException e) {
                                 System.out.println("Package does not exist");
