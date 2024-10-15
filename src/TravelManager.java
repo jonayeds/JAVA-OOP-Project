@@ -92,6 +92,7 @@ public class TravelManager {
                     System.out.println("2 --> Remove a package");
                     System.out.println("3 --> Exit");
                     System.out.println("4 --> Log out");
+                    System.out.println("5 -> View Confirmed packages");
                     System.out.print("Your choice: ");
                     choice = sc.nextInt();
                     System.out.println();
@@ -132,6 +133,8 @@ public class TravelManager {
                                 packageManagement.displayPackages();
                                 break;
                             }
+                            case 5:
+                                packageManagement.displayConfirmedPackages();
 
                     }
                     if(choice == 4){
