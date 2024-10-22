@@ -182,11 +182,12 @@ public class TravelManager {
                             }
 
                         case 2:
-                            packageManagement.showTourDestinations();
+                            String[] destinations = packageManagement.showTourDestinations();
                             System.out.print("\nChoose Destination: ");
                             int packageNum = sc.nextInt();
                             System.out.print("\nYour Budget: ");
                             double budget = sc.nextDouble();
+                            TouristRequest request = new TouristRequest(destinations[packageNum-1], budget);
 
                             break;
                     }
