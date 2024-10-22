@@ -66,6 +66,15 @@ public class PackageManagement {
         packageList.removeIf(p1 -> p1.getPackageID() == p.getPackageID());
 
     }
+    public String[] showTourDestinations(){
+        String[] tourDestinations = new String[packageList.size()];
+        for(int i=0; i<packageList.size(); i++){
+            System.out.println( i+1 + " --> "+ packageList.get(i).getTourDestination());
+            tourDestinations[i] = packageList.get(i).getTourDestination();
+        }
+
+        return tourDestinations;
+    }
 
 
 }

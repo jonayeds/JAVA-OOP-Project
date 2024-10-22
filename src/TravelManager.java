@@ -9,17 +9,18 @@ import java.util.Scanner;
 
 
 //----------------Features-----------------
-// --> users can Log in as Tourist or admin
-// --> Can Log out
-// --> Tourist can Book an existing package
-// --> Tourist can not Book a package twice
+// --> users can Log in as Tourist or admin.
+// --> Can Log out.
+// --> Tourist can Book an Available package.
+// --> Tourist can not Book a package twice.
 // --> Tourist`s ID will be saved in to Booked by array of the Package.
 // --> Tourist will get their Pending payment after Booking a Package.
 // --> Tourist`s pending payment will be saved Even If the tourist Logged Out.
 // --> Admin can Add or Remove A package.
 // --> A unique Package ID is added when a package is Created.
 // --> Tourist`s Pending payment will be reduced when Admin removes a package if He Booked the package earlier.
-
+// --> If a package is booked by 4 person, The package is confirmed and removed from available packages list.
+// --> Admin can view all confirmed packages.
 
 
 
@@ -155,7 +156,7 @@ public class TravelManager {
                     System.out.println();
                     System.out.println("Choices");
                     System.out.println("1 --> Book an available Package");
-                    System.out.println("2 --> Create Your Custom package");
+                    System.out.println("2 --> Request a Custom package");
                     System.out.println("3 --> Exit");
                     System.out.println("4 --> Log out");
 
@@ -181,7 +182,12 @@ public class TravelManager {
                             }
 
                         case 2:
-                            System.out.println("Chosen Choice 2");
+                            packageManagement.showTourDestinations();
+                            System.out.print("\nChoose Destination: ");
+                            int packageNum = sc.nextInt();
+                            System.out.print("\nYour Budget: ");
+                            double budget = sc.nextDouble();
+
                             break;
                     }
                     if(choice == 4){
