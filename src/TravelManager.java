@@ -158,7 +158,8 @@ public class TravelManager {
                     System.out.println("1 --> Book an available Package");
                     System.out.println("2 --> Request a Custom package");
                     System.out.println("3 --> Exit");
-                    System.out.println("4 --> Log out");
+                    System.out.println("4 --> Your Tour Requests");
+                    System.out.println("5 --> Log out");
 
                     System.out.print("Your choice: ");
                     choice = sc.nextInt();
@@ -188,10 +189,11 @@ public class TravelManager {
                             System.out.print("\nYour Budget: ");
                             double budget = sc.nextDouble();
                             TouristRequest request = new TouristRequest(destinations[packageNum-1], budget);
-
+                            tourist.addPendingRequest(request);
+                            System.out.println("Request sent to  admin");
                             break;
                     }
-                    if(choice == 4){
+                    if(choice == 5){
                         System.out.println("--------Logged Out Successfully--------");
                         System.out.println();
                         break;
