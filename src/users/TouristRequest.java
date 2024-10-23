@@ -15,6 +15,7 @@ public class TouristRequest {
     public double getBudget() {
         return budget;
     }
+    public boolean getIsPending() { return isPending;}
     void setIsPending(boolean isPending) {
         this.isPending = isPending;
     }

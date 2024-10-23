@@ -15,8 +15,14 @@ public class Tourist extends UserTemplate {
     public void setPendingPayment(double pendingPayment) {
         this.pendingPayment = pendingPayment;
     }
-    public void addPendingRequest(TouristRequest touristRequest){
+    public void addTourRequest(TouristRequest touristRequest){
         allTourRequests.add(touristRequest);
+    }
+    public void displayAllTourRequests(){
+        int i=1;
+        for(TouristRequest touristRequest : allTourRequests){
+            System.out.println(i+" --> Destination: "+ touristRequest.getDestination()+" || Budget: "+ touristRequest.getBudget() + " || Status: "+ (touristRequest.getIsPending() ? "Pending" : "Accepted"));
+        }
     }
 
 
