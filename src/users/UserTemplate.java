@@ -1,6 +1,6 @@
 package users;
 
-public class UserTemplate {
+abstract class UserTemplate {
     protected String name;
     protected int id;
     protected String password;

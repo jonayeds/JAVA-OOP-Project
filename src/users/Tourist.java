@@ -16,17 +16,22 @@ public class Tourist extends UserTemplate {
     public void setPendingPayment(double pendingPayment) {
         this.pendingPayment = pendingPayment;
     }
-
+    public ArrayList<TouristRequest> getAllTourRequests() {
+        return allTourRequests;
+    }
     public void addTourRequest(TouristRequest touristRequest){
+        touristRequest.setRequestId(allTourRequests.size()+1);
         allTourRequests.add(touristRequest);
     }
 
     public void displayAllTourRequests(){
         int i=1;
         for(TouristRequest touristRequest : allTourRequests){
-            System.out.println(i+" --> Destination: "+ touristRequest.getDestination()+" || Budget: "+ touristRequest.getBudget() + " || Status: "+ (touristRequest.getIsPending() ? "Pending" : "Accepted"));
+            System.out.println(i+" --> Destination: "+ touristRequest.getDestination()+" || Budget: "+ touristRequest.getBudget() + " || Status: "+ (touristRequest.getIsPending() ?  "Pending" : (touristRequest.isRejected? "Rejected" : "Accepted")   ) +  " || pending:"+ touristRequest.getIsPending()+ " || Rejected: "+ touristRequest.getIsRejected());
+            i++;
         }
     }
+
 
 
 

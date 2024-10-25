@@ -94,7 +94,7 @@ public class TravelManager {
                     System.out.println("3 --> Exit");
                     System.out.println("4 --> Log out");
                     System.out.println("5 -> View Confirmed packages");
-                    System.out.println("6 --> View Incoming Tour Requests");
+                    System.out.println("6 --> Manage Incoming Tour Requests");
                     System.out.print("Your choice: ");
                     choice = sc.nextInt();
                     System.out.println();
@@ -139,6 +139,16 @@ public class TravelManager {
                                 packageManagement.displayConfirmedPackages();
                                 break;
                             case 6:
+                                int requestNum = admin.viewAllIncomingRequests();
+                                System.out.println(requestNum+1 +" ---------> Go Back");
+                                System.out.print("\nChoose a Request: ");
+                                int chooses  = sc.nextInt();
+                                if(chooses == requestNum+1) break;
+                                Package pac = adminManagement.touristRequestManagement(admin.getRequestByIndex(chooses-1), admin,  userManagement);
+                                if(pac != null) {
+                                    packageManagement.addPackage(pac);
+
+                                }
 
                     }
                     if(choice == 4){
@@ -152,7 +162,6 @@ public class TravelManager {
                 Tourist tourist = userManagement.getTourist(email, password);
                 TouristManagement touristManagement = new TouristManagement();
                 System.out.println("Welcome "+ tourist.getName() + "||  You are a "+ tourist.role);
-
                 double pendingPayment= tourist.getPendingPayment();
                 while(choice != 3  ){
                     System.out.println();
