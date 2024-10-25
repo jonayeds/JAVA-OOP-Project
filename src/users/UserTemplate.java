@@ -20,6 +20,9 @@ public class UserTemplate {
     public int getId(){
         return id;
     }
+    public String getEmail() {
+        return email;
+    }
     public void setId(int id){
         this.id = id;
     }

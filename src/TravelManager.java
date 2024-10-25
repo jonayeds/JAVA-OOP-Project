@@ -94,6 +94,7 @@ public class TravelManager {
                     System.out.println("3 --> Exit");
                     System.out.println("4 --> Log out");
                     System.out.println("5 -> View Confirmed packages");
+                    System.out.println("6 --> View Incoming Tour Requests");
                     System.out.print("Your choice: ");
                     choice = sc.nextInt();
                     System.out.println();
@@ -136,6 +137,8 @@ public class TravelManager {
                             }
                             case 5:
                                 packageManagement.displayConfirmedPackages();
+                                break;
+                            case 6:
 
                     }
                     if(choice == 4){
@@ -190,6 +193,7 @@ public class TravelManager {
                             double budget = sc.nextDouble();
                             TouristRequest request = new TouristRequest(destinations[packageNum-1], budget);
                             tourist.addTourRequest(request);
+                            userManagement.sendRequestToAdmin(request, tourist.getId(), tourist.getName(), tourist.getEmail());
                             System.out.println("Request sent to  admin");
                             break;
                         case 5:
@@ -202,9 +206,6 @@ public class TravelManager {
                         break;
                     }
                 }
-
-
-
             }else if(role == null) {
                 System.out.println("Wrong password or email!!!");
             }

@@ -53,6 +53,11 @@ public class UserManagement {
             }
         }
     }
+    public void sendRequestToAdmin(TouristRequest request, int touristId, String touristName, String touristEmail){
+        for(Admin admin : adminList){
+            admin.addRequest(request, touristId, touristName, touristEmail);
+        }
+    }
 
     public void addTourist(Tourist tourist){
         tourist.setId(touristList.size()+1);
@@ -62,4 +67,5 @@ public class UserManagement {
         admin.setId(adminList.size()+1);
         adminList.add(admin);
     }
+
 }
