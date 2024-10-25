@@ -69,7 +69,7 @@ public class TravelManager {
                 Tourist tourist = new Tourist(name, password, email);
                 userManagement.addTourist(tourist);
                 choice = 0;
-                System.out.println("\n3Registration Successful ");
+                System.out.println("\nRegistration Successful ");
                 role="tourist";
             }else {
                 System.out.print("Enter email: ");
@@ -217,6 +217,7 @@ public class TravelManager {
                 }
             }else if(role == null) {
                 System.out.println("Wrong password or email!!!");
+                choice =4;
             }
 
         }

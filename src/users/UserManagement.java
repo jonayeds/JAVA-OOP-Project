@@ -33,7 +33,6 @@ public class UserManagement {
 
     public String userVerification(String email, String password){
         for(Tourist user : touristList){
-            System.out.println("Email: " + user.email+ " Password: " + user.password);
             if(Objects.equals(email, user.email) && Objects.equals(password, user.password)){
                 return "tourist";
             }
