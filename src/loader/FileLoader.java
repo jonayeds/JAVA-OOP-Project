@@ -1,5 +1,7 @@
 package loader;
 
+import tourpackages.Package;
+import tourpackages.PackageManagement;
 import users.*;
 
 import java.io.BufferedReader;
@@ -27,7 +29,6 @@ public class FileLoader {
                     TouristRequest request = new TouristRequest(reqData[0], Double.parseDouble(reqData[1]));
                     request.setIsPending(Boolean.parseBoolean(reqData[2]));
                     request.setIsRejected(Boolean.parseBoolean(reqData[3]));
-//                    request.setRequestId(Integer.parseInt(reqData[4]));
                     tourist.addTourRequest(request);
                     userManagement.sendRequestToAdmin(request, Integer.parseInt(data[4]), data[0], data[1]);
                 }
@@ -51,6 +52,30 @@ public class FileLoader {
                 userManagement.addAdmin(admin);
 
             }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void readPackageData(PackageManagement packageManagement){
+        String packageFile = System.getProperty("user.dir") + "\\data\\packages.csv";
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader(packageFile));
+            String  line;
+            while((line=reader.readLine())!= null){
+                String[] data  = line.split(",");
+                if(data[0].equals("packageName"))continue;
+                Package pack = new Package(data[0], data[1], Double.parseDouble(data[2]));
+                packageManagement.addPackage(pack);
+                String[] bookedBy = data[3].split("-");
+                for(String tourist : bookedBy){
+                    if(Integer.parseInt(tourist) == 0) break;
+                    pack.addToBookedBy(Integer.parseInt(tourist));
+                }
+                if(Integer.parseInt(bookedBy[3]) != 0) packageManagement.handleConfirmedPackage(pack);
+
+            }
+
         }catch (IOException e){
             e.printStackTrace();
         }

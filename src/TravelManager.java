@@ -33,6 +33,7 @@ public class TravelManager {
         FileLoader loader= new FileLoader();
         loader.readAdminData(userManagement);
         loader.readTouristData(userManagement);
+        loader.readPackageData(packageManagement);
         Package package1 = new Package("7 days at Maldives", "Maldives",200000);
         Package package2 = new Package("7 days at Sri Lanka", "Sri Lanka",100000);
         Tourist tourist1 = new Tourist("sajjad", "123456", "sajjad@jonayed.com");
