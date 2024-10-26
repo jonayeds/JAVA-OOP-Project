@@ -1,4 +1,5 @@
 import exceptions.UserInputException;
+import loader.FileLoader;
 import tourpackages.Package;
 import tourpackages.PackageManagement;
 import users.*;
@@ -29,7 +30,8 @@ public class TravelManager {
         UserManagement userManagement = new UserManagement();
         PackageManagement packageManagement = new PackageManagement();
         Scanner sc = new Scanner(System.in);
-
+        FileLoader loader= new FileLoader();
+        loader.readTouristData(userManagement);
         Package package1 = new Package("7 days at Maldives", "Maldives",200000);
         Package package2 = new Package("7 days at Sri Lanka", "Sri Lanka",100000);
         Tourist tourist1 = new Tourist("sajjad", "123456", "sajjad@jonayed.com");
@@ -221,8 +223,5 @@ public class TravelManager {
             }
 
         }
-
-
-
     }
 }

@@ -21,12 +21,12 @@ public class TouristRequest {
     public int getRequestId() {return requestId;}
     public boolean getIsPending() { return isPending;}
     public boolean getIsRejected() { return isRejected;}
-    void setIsPending(boolean isPending) {
+    public void setIsPending(boolean isPending) {
         this.isPending = isPending;
     }
-    void setIsRejected(boolean isRejected) {
+    public void setIsRejected(boolean isRejected) {
         this.isRejected = isRejected;
     }
-    void setRequestId(int requestId) { this.requestId = requestId; }
+    public void setRequestId(int requestId) { this.requestId = requestId; }
 
 }

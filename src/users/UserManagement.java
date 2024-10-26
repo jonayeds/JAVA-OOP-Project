@@ -60,11 +60,8 @@ public class UserManagement {
     public void handleRequest(boolean isRejected , IncomingTourRequest request){
         for(Tourist tourist : touristList){
             if(tourist.getId() == request.touristID){
-                System.out.println("Tourist Found");
                 for(TouristRequest req : tourist.getAllTourRequests()){
-                    System.out.println(req.getRequestId() +" vs "+ request.getRequestId());
                     if(req.getRequestId() ==  request.getRequestId()){
-                        System.out.println("Request Found");
                         req.setIsRejected(isRejected);
                         req.setIsPending(false);
                         return;
