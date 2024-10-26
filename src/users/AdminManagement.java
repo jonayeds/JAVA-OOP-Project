@@ -19,6 +19,7 @@ public class AdminManagement {
             userManagement.handleRequest(false, request);
             return new Package(packageName, request.getDestination(), request.getBudget());
         }else if(choice == 2){
+            System.out.println("Tourist Id: "+ request.touristID +" || Request Id: "+ request.getRequestId());
             admin.deleteRequest(request);
             userManagement.handleRequest(true, request);
             return null;

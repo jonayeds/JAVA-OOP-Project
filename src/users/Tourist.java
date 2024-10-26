@@ -27,7 +27,7 @@ public class Tourist extends UserTemplate {
     public void displayAllTourRequests(){
         int i=1;
         for(TouristRequest touristRequest : allTourRequests){
-            System.out.println(i+" --> Destination: "+ touristRequest.getDestination()+" || Budget: "+ touristRequest.getBudget() + " || Status: "+ (touristRequest.getIsPending() ?  "Pending" : (touristRequest.isRejected? "Rejected" : "Accepted")   ) +  " || pending:"+ touristRequest.getIsPending()+ " || Rejected: "+ touristRequest.getIsRejected());
+            System.out.println(i+" --> Destination: "+ touristRequest.getDestination()+" || Budget: "+ touristRequest.getBudget() + " || Status: "+ (touristRequest.getIsPending() ?  "Pending" : (touristRequest.isRejected? "Rejected" : "Accepted")) );
             i++;
         }
     }

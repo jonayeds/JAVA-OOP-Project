@@ -31,6 +31,7 @@ public class TravelManager {
         PackageManagement packageManagement = new PackageManagement();
         Scanner sc = new Scanner(System.in);
         FileLoader loader= new FileLoader();
+        loader.readAdminData(userManagement);
         loader.readTouristData(userManagement);
         Package package1 = new Package("7 days at Maldives", "Maldives",200000);
         Package package2 = new Package("7 days at Sri Lanka", "Sri Lanka",100000);
@@ -142,10 +143,10 @@ public class TravelManager {
                                 break;
                             case 6:
                                 int requestNum = admin.viewAllIncomingRequests();
-                                System.out.println(requestNum+1 +" ---------> Go Back");
+                                System.out.println(requestNum +" ---------> Go Back");
                                 System.out.print("\nChoose a Request: ");
                                 int chooses  = sc.nextInt();
-                                if(chooses == requestNum+1) break;
+                                if(chooses == requestNum) break;
                                 Package pac = adminManagement.touristRequestManagement(admin.getRequestByIndex(chooses-1), admin,  userManagement);
                                 if(pac != null) {
                                     packageManagement.addPackage(pac);
