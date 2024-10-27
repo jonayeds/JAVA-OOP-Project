@@ -38,10 +38,6 @@ public class TravelManager {
         loader.readAdminData(userManagement);
         loader.readTouristData(userManagement);
         loader.readPackageData(packageManagement);
-        Package package1 = new Package("7 days at Maldives", "Maldives",200000);
-        Package package2 = new Package("7 days at Sri Lanka", "Sri Lanka",100000);
-        packageManagement.addPackage(package1);
-        packageManagement.addPackage(package2);
         String name, email, password, role;
 
         int choice=4;
@@ -221,9 +217,9 @@ public class TravelManager {
                 System.out.println("Wrong password or email!!!");
                 choice =4;
             }
-
         }
         WriteData writer = new WriteData();
+        writer.writePackageData(packageManagement.getPackageList());
         writer.writeTourist(userManagement.getAllTourists());
     }
 }

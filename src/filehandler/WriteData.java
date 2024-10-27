@@ -1,5 +1,6 @@
 package filehandler;
 
+import tourpackages.Package;
 import users.Admin;
 import users.Tourist;
 import users.TouristRequest;
@@ -40,6 +41,27 @@ public class WriteData {
             for(Admin admin : adminList){
                 writer.append(admin.getName()+","+admin.getPassword()+","+admin.getEmail()+","+admin.getId()+"\n");
             }
+            writer.close();
+        }catch(IOException e){
+            System.out.println("Error writing to admin file");
+        }
+    }
+
+    public void writePackageData(ArrayList<Package> packageList){
+        String packageFile = System.getProperty("user.dir") + "\\data\\packages.csv";
+        try{
+            FileWriter writer  = new FileWriter(packageFile);
+            for(Package pack : packageList){
+                String bookedBy= "";
+                for( int i=0 ; i<pack.getBookedBy().length; i++){
+                    bookedBy+= pack.getBookedBy()[i];
+                    if(i<pack.getBookedBy().length-1){
+                        bookedBy+="-";
+                    }
+                }
+                writer.append(pack.getPackageName()+","+pack.getTourDestination()+","+pack.getPackagePrice()+","+bookedBy+"\n");
+            }
+            writer.close();
         }catch(IOException e){
             System.out.println("Error writing to admin file");
         }

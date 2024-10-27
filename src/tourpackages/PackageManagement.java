@@ -72,9 +72,10 @@ public class PackageManagement {
             System.out.println( i+1 + " --> "+ packageList.get(i).getTourDestination());
             tourDestinations[i] = packageList.get(i).getTourDestination();
         }
-
         return tourDestinations;
     }
+    public ArrayList<Package> getPackageList() {return packageList;}
+    public ArrayList<Package> getConfirmedPackageList() {return confirmedPackageList;}
 
 
 }

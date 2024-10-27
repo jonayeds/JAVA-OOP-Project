@@ -4,7 +4,7 @@ public  class Package{
     private String packageName;
     private String tourDestination;
     private double packagePrice;
-    private int bookedBy[] = new int[4] ;
+    private int[] bookedBy = new int[4] ;
 
     public Package( String packageName, String tourDestination, double packagePrice) {
         this.packageName=packageName;
@@ -35,7 +35,7 @@ public  class Package{
         }
 
     }
-    protected int[] getBookedBy() {
+    public int[] getBookedBy() {
         return bookedBy;
     }
     public boolean isBooked(int touristId){
