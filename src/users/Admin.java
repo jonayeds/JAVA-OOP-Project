@@ -3,7 +3,7 @@ package users;
 import java.util.ArrayList;
 
 public class Admin extends UserTemplate {
-    private ArrayList<IncomingTourRequest> incomingRequests = new ArrayList<>();
+    private final ArrayList<IncomingTourRequest> incomingRequests = new ArrayList<>();
     public Admin(String name, String password, String email){
         super(name,password,email,"admin");
     }

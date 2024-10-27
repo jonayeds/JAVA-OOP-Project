@@ -1,10 +1,10 @@
 package tourpackages;
 public  class Package{
     private int packageID;
-    private String packageName;
-    private String tourDestination;
-    private double packagePrice;
-    private int[] bookedBy = new int[4] ;
+    private  String packageName;
+    private  String tourDestination;
+    private  double packagePrice;
+    private  int[] bookedBy = new int[4] ;
 
     public Package( String packageName, String tourDestination, double packagePrice) {
         this.packageName=packageName;

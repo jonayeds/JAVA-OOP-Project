@@ -34,18 +34,18 @@ public class WriteData {
         }
     }
 
-    public void writeAdminData(ArrayList<Admin> adminList){
-        String adminFile = System.getProperty("user.dir") + "\\data\\admin.csv";
-        try{
-            FileWriter writer  = new FileWriter(adminFile);
-            for(Admin admin : adminList){
-                writer.append(admin.getName()+","+admin.getPassword()+","+admin.getEmail()+","+admin.getId()+"\n");
-            }
-            writer.close();
-        }catch(IOException e){
-            System.out.println("Error writing to admin file");
-        }
-    }
+//    public void writeAdminData(ArrayList<Admin> adminList){
+//        String adminFile = System.getProperty("user.dir") + "\\data\\admin.csv";
+//        try{
+//            FileWriter writer  = new FileWriter(adminFile);
+//            for(Admin admin : adminList){
+//                writer.append(admin.getName()+","+admin.getPassword()+","+admin.getEmail()+","+admin.getId()+"\n");
+//            }
+//            writer.close();
+//        }catch(IOException e){
+//            System.out.println("Error writing to admin file");
+//        }
+//    }
 
     public void writePackageData(ArrayList<Package> packageList){
         String packageFile = System.getProperty("user.dir") + "\\data\\packages.csv";

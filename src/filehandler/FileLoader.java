@@ -41,7 +41,7 @@ public class FileLoader {
 
             }
         }catch (IOException e){
-            e.printStackTrace();
+            System.out.println("Error while reading Tourist Data");
         }
     }
 
@@ -58,7 +58,7 @@ public class FileLoader {
 
             }
         }catch (IOException e){
-            e.printStackTrace();
+            System.out.println("Error while reading Admin Data");
         }
     }
 
@@ -82,7 +82,7 @@ public class FileLoader {
             }
 
         }catch (IOException e){
-            e.printStackTrace();
+            System.out.println("Error while reading Package Data");
         }
     }
 
