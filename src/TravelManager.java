@@ -1,9 +1,9 @@
 import exceptions.UserInputException;
-import loader.FileLoader;
+import filehandler.FileLoader;
+import filehandler.WriteData;
 import tourpackages.Package;
 import tourpackages.PackageManagement;
 import users.*;
-
 import java.util.InputMismatchException;
 import java.util.Objects;
 import java.util.Scanner;
@@ -22,6 +22,10 @@ import java.util.Scanner;
 // --> Tourist`s Pending payment will be reduced when Admin removes a package if He Booked the package earlier.
 // --> If a package is booked by 4 person, The package is confirmed and removed from available packages list.
 // --> Admin can view all confirmed packages.
+// --> Tourists can request a custom package according to their chosen destination and budget.
+// --> Admin and Accept or reject tourists requests If accepts then have to add a package according to the request.
+// --> Tourist can see their request is accepted or rejected.
+// --> FileLoader will read user and package data from csv file.
 
 
 
@@ -36,12 +40,6 @@ public class TravelManager {
         loader.readPackageData(packageManagement);
         Package package1 = new Package("7 days at Maldives", "Maldives",200000);
         Package package2 = new Package("7 days at Sri Lanka", "Sri Lanka",100000);
-        Tourist tourist1 = new Tourist("sajjad", "123456", "sajjad@jonayed.com");
-        Tourist tourist2 = new Tourist("Sam Jones", "123456", "sam@gmail.com");
-        Admin admin1 = new Admin("John Stones", "123456", "john@stones.com");
-        userManagement.addTourist(tourist1);
-        userManagement.addTourist(tourist2);
-        userManagement.addAdmin(admin1);
         packageManagement.addPackage(package1);
         packageManagement.addPackage(package2);
         String name, email, password, role;
@@ -225,5 +223,7 @@ public class TravelManager {
             }
 
         }
+        WriteData writer = new WriteData();
+        writer.writeTourist(userManagement.getAllTourists());
     }
 }

@@ -23,6 +23,9 @@ abstract class UserTemplate {
     public String getEmail() {
         return email;
     }
+    public String getPassword() {
+        return password;
+    }
     public void setId(int id){
         this.id = id;
     }

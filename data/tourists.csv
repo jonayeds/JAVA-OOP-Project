@@ -1,2 +1,4 @@
-name,password,email,pendingPayment,userId,tourRequests
-Buta Gorila,123456,buta@buta.com,0.0,1,Maldives-1200-true-false-1!Sri Lanka-500-false-true-2!Maldives-200-false-true-3
+Name,password,email,PendingPayment,TouristId,TourRequest
+Buta Gorila,123456,buta@buta.com,1000.0,1,n
+sajjad,123456,sajjad@jonayed.com,601500.0,2,Maldives-5000.0-true-false-!
+Sam Jones,123456,sam@gmail.com,500.0,3,n

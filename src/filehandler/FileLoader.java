@@ -1,4 +1,4 @@
-package loader;
+package filehandler;
 
 import tourpackages.Package;
 import tourpackages.PackageManagement;
@@ -7,6 +7,7 @@ import users.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Objects;
 
 public class FileLoader {
 
@@ -18,20 +19,24 @@ public class FileLoader {
             String  line;
             while((line=reader.readLine())!= null){
                 String[] data  = line.split(",");
-                if(data[0].equals("name"))continue;
+                if(data[0].equals("Name"))continue;
                 Tourist tourist = new Tourist(data[0], data[1], data[2]);
                 tourist.setPendingPayment(Double.parseDouble(data[3]));
-                String[] tourRequest = data[5].split("!");
-
+                if(!Objects.equals(data[5], "n")){
+                    String[] tourRequest = data[5].split("!");
 //                Loop through each tourist request data
                 for(String req : tourRequest){
+                    if(req.isEmpty()) break;
                     String[] reqData = req.split("-");
+                    if(reqData.length == 1) break;
                     TouristRequest request = new TouristRequest(reqData[0], Double.parseDouble(reqData[1]));
                     request.setIsPending(Boolean.parseBoolean(reqData[2]));
                     request.setIsRejected(Boolean.parseBoolean(reqData[3]));
                     tourist.addTourRequest(request);
                     userManagement.sendRequestToAdmin(request, Integer.parseInt(data[4]), data[0], data[1]);
                 }
+                }
+
                 userManagement.addTourist(tourist);
 
             }

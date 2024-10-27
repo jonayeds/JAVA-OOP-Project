@@ -1,5 +1,7 @@
 package users;
 
+import filehandler.WriteData;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -81,6 +83,12 @@ public class UserManagement {
     public void addAdmin(Admin admin){
         admin.setId(adminList.size()+1);
         adminList.add(admin);
+    }
+    public ArrayList<Tourist> getAllTourists(){
+        return touristList;
+    }
+    public ArrayList<Admin> getAllAdmins(){
+        return adminList;
     }
 
 }
