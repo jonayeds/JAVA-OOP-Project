@@ -39,7 +39,7 @@ public class TravelManager {
         loader.readTouristData(userManagement);
         loader.readPackageData(packageManagement);
         loader.readConfirmedPackages(packageManagement);
-        String name, email, password, role;
+        String name, email = "", password = "", role;
 
         int choice=4;
         while(choice == 4){
@@ -61,10 +61,24 @@ public class TravelManager {
             if(choice == 3){
                 System.out.print("Enter Name: ");
                  name = sc.nextLine();
-                System.out.print("Enter email: ");
-                 email = sc.nextLine();
-                System.out.print("Enter Password: ");
-                 password = sc.nextLine();
+
+                 boolean isValid  = false;
+
+                 while(!isValid){
+                    System.out.print("Enter email: ");
+                    email = sc.nextLine();
+                    isValid = userManagement.validateEmail(email);
+                    if(!isValid) System.out.println("Invalid Email");
+                 }
+                 isValid=false;
+                while(!isValid){
+                    System.out.print("Enter Password: ");
+                    password = sc.nextLine();
+                    isValid = userManagement.validateEmail(password);
+                    if(!isValid) System.out.println("Invalid Email");
+                }
+
+
                 Tourist tourist = new Tourist(name, password, email);
                 userManagement.addTourist(tourist);
                 choice = 0;

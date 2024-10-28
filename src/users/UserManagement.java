@@ -76,6 +76,16 @@ public class UserManagement {
         }
     }
 
+    public boolean validateEmail(String email){
+        String emailRegex = "^[a-z0-9]+(\\.[a-z0-9]+)*@[a-z]{2,7}\\.[a-z]{2,3}(\\.[a-z]{2,3})*$";
+        return email.matches(emailRegex);
+    }
+
+    public boolean validatePassword(String password){
+        String passwordRegex = "^$";
+        return password.matches(passwordRegex);
+    }
+
     public void addTourist(Tourist tourist){
         tourist.setId(touristList.size()+1);
         touristList.add(tourist);
