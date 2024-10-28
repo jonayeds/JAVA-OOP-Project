@@ -70,7 +70,7 @@ public class FileLoader {
             String  line;
             while((line=reader.readLine())!= null){
                 String[] data  = line.split(",");
-                if(data[0].equals("packageName"))continue;
+                if(data[0].equals("Package Name"))continue;
                 Package pack = new Package(data[0], data[1], Double.parseDouble(data[2]));
                 packageManagement.addPackage(pack);
                 String[] bookedBy = data[3].split("-");
@@ -94,7 +94,7 @@ public class FileLoader {
             String line;
             while((line=reader.readLine())!= null){
                 String[] data = line.split(",");
-                if(data[0].equals("packageName"))continue;
+                if(data[0].equals("Package Name"))continue;
                 Package pack = new Package(data[0], data[1], Double.parseDouble(data[2]));
                 String[] bookedBy = data[3].split("-");
                 for(String tourist : bookedBy){

@@ -8,6 +8,7 @@ import users.TouristRequest;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class WriteData {
     public void writeTourist(ArrayList<Tourist> touristList){
@@ -51,6 +52,7 @@ public class WriteData {
         String packageFile = System.getProperty("user.dir") + "\\data\\packages.csv";
         try{
             FileWriter writer  = new FileWriter(packageFile);
+            writer.append("Package Name, Tour Destination, Price, Booked by\n");
             for(Package pack : packageList){
                 String bookedBy= "";
                 for( int i=0 ; i<pack.getBookedBy().length; i++){
@@ -63,7 +65,29 @@ public class WriteData {
             }
             writer.close();
         }catch(IOException e){
-            System.out.println("Error writing to admin file");
+            System.out.println("Error writing to packages file");
+        }
+    }
+
+    public void writeConfirmedPackages(ArrayList<Package> confirmedPackageList){
+        String confirmedFile = System.getProperty("user.dir") + "\\data\\confirmedPackages.csv";
+        try{
+            FileWriter writer = new FileWriter(confirmedFile);
+            writer.append("Package Name, Tour Destination, Price, Booked by\n");
+            for(Package pack : confirmedPackageList){
+                String bookedBy="";
+                for(int i=0; i<pack.getBookedBy().length; i++){
+                    bookedBy+= pack.getBookedBy()[i];
+                    if(i<pack.getBookedBy().length-1){
+                        bookedBy+="-";
+                    }
+                }
+                writer.append(pack.getPackageName()+","+pack.getTourDestination()+","+pack.getPackagePrice()+","+bookedBy+"\n");
+            }
+            writer.close();
+
+        }catch (IOException e){
+            System.out.println("Error writing to Confirmed Packages file");
         }
     }
 }

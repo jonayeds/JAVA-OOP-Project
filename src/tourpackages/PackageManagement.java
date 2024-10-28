@@ -3,6 +3,7 @@ package tourpackages;
 import users.UserManagement;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PackageManagement {
     private ArrayList<Package> packageList = new ArrayList<>();
@@ -30,7 +31,7 @@ public class PackageManagement {
         System.out.println();
         for (Package p : confirmedPackageList) {
             idx++;
-            System.out.println(idx + " --> "+p.getPackageName() + " || "+ p.getTourDestination()+ " || "+ p.getPackagePrice() +" || "+ p.getPackageID() );
+            System.out.println(idx + " --> "+p.getPackageName() + " || "+ p.getTourDestination()+ " || "+ p.getPackagePrice() +" || "+ p.getPackageID()+" || "+ Arrays.toString(p.getBookedBy()));
         }
     }
 

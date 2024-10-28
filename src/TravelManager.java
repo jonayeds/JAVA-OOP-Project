@@ -221,6 +221,7 @@ public class TravelManager {
         }
         WriteData writer = new WriteData();
         writer.writePackageData(packageManagement.getPackageList());
+        writer.writeConfirmedPackages(packageManagement.getConfirmedPackageList());
         writer.writeTourist(userManagement.getAllTourists());
     }
 }
