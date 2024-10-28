@@ -7,6 +7,7 @@ import users.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class FileLoader {
@@ -83,6 +84,26 @@ public class FileLoader {
 
         }catch (IOException e){
             System.out.println("Error while reading Package Data");
+        }
+    }
+
+    public void readConfirmedPackages(PackageManagement packageManagement){
+        String confirmedFile = System.getProperty("user.dir")+ "\\data\\confirmedPackages.csv";
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader(confirmedFile));
+            String line;
+            while((line=reader.readLine())!= null){
+                String[] data = line.split(",");
+                if(data[0].equals("packageName"))continue;
+                Package pack = new Package(data[0], data[1], Double.parseDouble(data[2]));
+                String[] bookedBy = data[3].split("-");
+                for(String tourist : bookedBy){
+                    pack.addToBookedBy(Integer.parseInt(tourist));
+                }
+                packageManagement.handleConfirmedPackage(pack);
+            }
+        }catch (IOException e){
+            System.out.println("Error while reading ConfirmedPackages Data");
         }
     }
 

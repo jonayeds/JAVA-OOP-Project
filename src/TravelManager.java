@@ -38,6 +38,7 @@ public class TravelManager {
         loader.readAdminData(userManagement);
         loader.readTouristData(userManagement);
         loader.readPackageData(packageManagement);
+        loader.readConfirmedPackages(packageManagement);
         String name, email, password, role;
 
         int choice=4;
