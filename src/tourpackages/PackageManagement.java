@@ -20,18 +20,22 @@ public class PackageManagement {
     }
     public void displayPackages() {
         int idx =0;
-        System.out.println();
         for (Package p : packageList) {
             idx++;
-            System.out.println(idx + " --> "+p.getPackageName() + " || "+ p.getTourDestination()+ " || "+ p.getPackagePrice() +" || "+ p.getPackageID() );
+            System.out.println("\t\t"+idx + " --> "+p.getPackageName() + " || "+ p.getTourDestination()+ " || "+ p.getPackagePrice()+"$"  );
         }
+        System.out.println("\t\t-----------------------------------------------------");
     }
-    public void displayConfirmedPackages() {
+    public void displayConfirmedPackages(UserManagement userManagement) {
         int idx =0;
-        System.out.println();
+        System.out.println("\t\t----------------------------- C O N F I R M E D   P A C K A G E S ----------------------------");
         for (Package p : confirmedPackageList) {
             idx++;
-            System.out.println(idx + " --> "+p.getPackageName() + " || "+ p.getTourDestination()+ " || "+ p.getPackagePrice() +" || "+ p.getPackageID()+" || "+ Arrays.toString(p.getBookedBy()));
+            String bookedBy =" Booked by: { ";
+            for(int t =0;  t<p.getBookedBy().length;t++){
+                bookedBy+= userManagement.getTouristById(p.getBookedBy()[t]).getName()+ (t==p.getBookedBy().length-1? " }" :" --&-- ");
+            }
+            System.out.println("\t\t"+idx + " --> "+p.getPackageName() + " || "+ p.getTourDestination()+ " || "+ p.getPackagePrice() +" || "+ p.getPackageID()+" || "+ bookedBy);
         }
     }
 
@@ -67,10 +71,12 @@ public class PackageManagement {
     }
     public String[] showTourDestinations(){
         String[] tourDestinations = new String[packageList.size()];
+        System.out.println("\t\t-----Destinations-----");
         for(int i=0; i<packageList.size(); i++){
-            System.out.println( i+1 + " --> "+ packageList.get(i).getTourDestination());
+            System.out.println("\t\t"+ (i+1) + " --> "+ packageList.get(i).getTourDestination());
             tourDestinations[i] = packageList.get(i).getTourDestination();
         }
+        System.out.println("\t\t--------------------");
         return tourDestinations;
     }
     public ArrayList<Package> getPackageList() {return packageList;}

@@ -26,6 +26,8 @@ import java.util.Scanner;
 // --> Admin and Accept or reject tourists requests If accepts then have to add a package according to the request.
 // --> Tourist can see their request is accepted or rejected.
 // --> FileLoader will read user and package data from csv file.
+// --> Write data will re write all updated data before user exit the application.
+// --> used Password and Email validation.
 
 
 
@@ -43,52 +45,58 @@ public class TravelManager {
 
         int choice=4;
         while(choice == 4){
-            System.out.println("1 --> Log In");
-            System.out.println("2 --> Exit");
-            System.out.println("3 --> Register");
-            System.out.print("Your Choice : ");
+            System.out.println("----------------------------------------");
+            System.out.println("\t\t1 --> Log In");
+            System.out.println("\t\t2 --> Exit");
+            System.out.println("\t\t3 --> Register");
+            System.out.println("----------------------------------------");
+            System.out.print("\t\tYour Choice : ");
             choice = sc.nextInt();
             sc.nextLine();
+            System.out.println();
             if(choice == 2){
                 break;
             }
             if(choice != 1 && choice != 3){
                 choice=4;
-                System.out.println("Wrong Choice");
+                System.out.println("!!!----------------->Wrong Choice");
                 continue;
             }
 
             if(choice == 3){
-                System.out.print("Enter Name: ");
+                System.out.print("\t\tEnter Name: ");
                  name = sc.nextLine();
 
                  boolean isValid  = false;
 
                  while(!isValid){
-                    System.out.print("Enter email: ");
+                    System.out.print("\t\tEnter email: ");
                     email = sc.nextLine();
                     isValid = userManagement.validateEmail(email);
-                    if(!isValid) System.out.println("Invalid Email");
+                    if(!isValid) System.out.println("!!!---------------->Invalid Email");
                  }
                  isValid=false;
                 while(!isValid){
-                    System.out.print("Enter Password: ");
+                    System.out.print("\t\tEnter Password: ");
                     password = sc.nextLine();
                     isValid = userManagement.validatePassword(password);
-                    if(!isValid) System.out.println("Invalid Password");
+                    if(!isValid) System.out.println( "!!!---------------->You have to include capital and small Letter, Number, and a special character  password. ");
                 }
 
 
                 Tourist tourist = new Tourist(name, password, email);
                 userManagement.addTourist(tourist);
                 choice = 0;
-                System.out.println("\nRegistration Successful ");
+                System.out.println("\n--------------Registration Successful----------------- ");
                 role="tourist";
             }else {
-                System.out.print("Enter email: ");
+                System.out.println("\t\t-------------Log In--------------");
+                System.out.print("\t\tEnter email: ");
                  email = sc.nextLine();
-                System.out.print("Enter Password: ");
+                System.out.print("\t\tEnter Password: ");
                  password = sc.nextLine();
+                System.out.println("\t\t----------------------------------\n");
+
                 role = userManagement.userVerification(email, password);
             }
 
@@ -96,47 +104,49 @@ public class TravelManager {
 
             if(Objects.equals(role, "admin")){
                 Admin admin = userManagement.getAdmin(email, password);
-                System.out.println("Welcome "+ admin.getName() + "||  You are a "+ admin.role);
+                System.out.println("\t\tWelcome "+ admin.getName() + "||  You are a "+ admin.role);
                 AdminManagement adminManagement = new AdminManagement();
                 while(choice != 3){
                     System.out.println();
                     System.out.println();
-                    System.out.println("Choices");
-                    System.out.println("1 --> Add a Package");
-                    System.out.println("2 --> Remove a package");
-                    System.out.println("3 --> Exit");
-                    System.out.println("4 --> Log out");
-                    System.out.println("5 -> View Confirmed packages");
-                    System.out.println("6 --> Manage Incoming Tour Requests");
-                    System.out.print("Your choice: ");
+                    System.out.println("\n\t\t-----------Choices-----------");
+                    System.out.println("\t\t1 --> Add a Package");
+                    System.out.println("\t\t2 --> Remove a package");
+                    System.out.println("\t\t3 --> Exit");
+                    System.out.println("\t\t4 --> Log out");
+                    System.out.println("\t\t5 -> View Confirmed packages");
+                    System.out.println("\t\t6 --> Manage Incoming Tour Requests");
+                    System.out.println("\t\t-------------------------------------------");
+                    System.out.print("\t\tYour choice: ");
                     choice = sc.nextInt();
                     System.out.println();
                     switch (choice){
                         case 1:
-                                System.out.print("Enter package name: ");
+                                System.out.print("\t\tEnter package name: ");
                                 String packageName = sc.nextLine();
                                 packageName =  sc.nextLine();
-                                System.out.println();
-                                System.out.print("Enter tour Destination: ");
+                                System.out.print("\t\tEnter tour Destination: ");
                                 String destination = sc.nextLine();
                             try{
-                                System.out.print("Enter tour cost: ");
+                                System.out.print("\t\tEnter tour cost: ");
                                 double cost = sc.nextDouble();
                                 Package pack = new Package(packageName, destination, cost);
                                 packageManagement.addPackage(pack);
                             }catch (InputMismatchException e){
-                                System.out.println("Package cost Cannot be A String!!!!");
+                                System.out.println("\t\t!!!-------------> Package cost Cannot be A String!!!!");
                                 throw new UserInputException("Package cost Cannot be A String!!!!");
                             }
                             finally {
                                 sc.nextLine();
+                                System.out.println("\n\t\t------------- Packages --------------");
                                 packageManagement.displayPackages();
                                 break;
                             }
                         case 2:
+                            System.out.println("\n\t\t------------- Packages --------------");
                             packageManagement.displayPackages();
                             System.out.println();
-                            System.out.print("Choose a Package to Remove: ");
+                            System.out.print("\t\tChoose a Package to Remove: ");
                             int chosenPackage = sc.nextInt();
                             try{
                                 packageManagement.deletePackage(packageManagement.getPackageByIndex(chosenPackage-1) , userManagement);
@@ -145,16 +155,18 @@ public class TravelManager {
                                 throw new UserInputException("Package not found");
                             }
                             finally {
+                                System.out.println("\t\t--------------  New Package List --------------");
                                 packageManagement.displayPackages();
                                 break;
                             }
                             case 5:
-                                packageManagement.displayConfirmedPackages();
+                                packageManagement.displayConfirmedPackages(userManagement);
                                 break;
                             case 6:
                                 int requestNum = admin.viewAllIncomingRequests();
-                                System.out.println(requestNum +" ---------> Go Back");
-                                System.out.print("\nChoose a Request: ");
+                                System.out.println("\t\t"+requestNum +"---------> Go Back");
+                                System.out.println("\t\t------------------------------------------------------");
+                                System.out.print("\n\t\tChoose a Request: ");
                                 int chooses  = sc.nextInt();
                                 if(chooses == requestNum) break;
                                 Package pac = adminManagement.touristRequestManagement(admin.getRequestByIndex(chooses-1), admin,  userManagement);
@@ -174,62 +186,61 @@ public class TravelManager {
             }else if(Objects.equals(role, "tourist")){
                 Tourist tourist = userManagement.getTourist(email, password);
                 TouristManagement touristManagement = new TouristManagement();
-                System.out.println("Welcome "+ tourist.getName() + "||  You are a "+ tourist.role);
+                System.out.println("\t\tWelcome "+ tourist.getName() + " || You are a "+ tourist.role);
                 double pendingPayment= tourist.getPendingPayment();
                 while(choice != 3  ){
-                    System.out.println();
-                    System.out.println();
-                    System.out.println("Choices");
-                    System.out.println("1 --> Book an available Package");
-                    System.out.println("2 --> Request a Custom package");
-                    System.out.println("3 --> Exit");
-                    System.out.println("4 --> Log out");
-                    System.out.println("5 --> Your Tour Requests");
+                    System.out.println("\n\t\t-----------Choices-----------");
+                    System.out.println("\t\t1 --> Book an available Package");
+                    System.out.println("\t\t2 --> Request a Custom package");
+                    System.out.println("\t\t3 --> Exit");
+                    System.out.println("\t\t4 --> Log out");
+                    System.out.println("\t\t5 --> Your Tour Requests");
+                    System.out.println("\t\t--------------------------------");
 
-                    System.out.print("Your choice: ");
+                    System.out.print("\t\tYour choice: ");
                     choice = sc.nextInt();
                     System.out.println();
                     switch (choice){
                         case 1:
-                            System.out.println("Choose 1 Package");
+                            System.out.println("\t\t----------------Choose 1 Package----------------");
                             packageManagement.displayPackages();
-                            System.out.print("Your choice: ");
+                            System.out.print("\t\tYour choice: ");
                             int chosenPackage = sc.nextInt();
                             try {
                                 pendingPayment = touristManagement.bookExistingPackage(packageManagement.getPackageByIndex(chosenPackage-1), pendingPayment, tourist.getId(), packageManagement);
                                 tourist.setPendingPayment(pendingPayment);
                             }catch(IndexOutOfBoundsException e) {
-                                System.out.println("Package does not exist");
+                                System.out.println("!!!---------------->Package does not exist");
                                 throw new UserInputException("Package Not Found");
                             }
                             finally {
-                                System.out.println("Pending payment is "+pendingPayment);
+                                System.out.println("\t\t~~~~~~~~~~~~~~~~~>Pending payment is "+pendingPayment);
                                 break;
                             }
 
                         case 2:
                             String[] destinations = packageManagement.showTourDestinations();
-                            System.out.print("\nChoose Destination: ");
+                            System.out.print("\t\tChoose Destination: ");
                             int packageNum = sc.nextInt();
-                            System.out.print("\nYour Budget($): ");
+                            System.out.print("\t\tYour Budget($): ");
                             double budget = sc.nextDouble();
                             TouristRequest request = new TouristRequest(destinations[packageNum-1], budget);
                             tourist.addTourRequest(request);
                             userManagement.sendRequestToAdmin(request, tourist.getId(), tourist.getName(), tourist.getEmail());
-                            System.out.println("Request sent to  admin");
+                            System.out.println("\n\t\t--------------------> Request sent to  admin <--------------------");
                             break;
                         case 5:
                             tourist.displayAllTourRequests();
                             break;
                     }
                     if(choice == 4){
-                        System.out.println("--------Logged Out Successfully--------");
+                        System.out.println("\t\t--------Logged Out Successfully--------");
                         System.out.println();
                         break;
                     }
                 }
             }else if(role == null) {
-                System.out.println("Wrong password or email!!!");
+                System.out.println("!!!------------> Wrong password or email!!!");
                 choice =4;
             }
         }

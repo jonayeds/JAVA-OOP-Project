@@ -16,8 +16,10 @@ public class Admin extends UserTemplate {
     }
     public int viewAllIncomingRequests(){
         int i=1;
+        System.out.println("\t\t----------------INCOMING REQUESTS-------------------");
+        if(incomingRequests.isEmpty()) System.out.println("\t\tNo Requests Found");;
         for(IncomingTourRequest touristRequest : incomingRequests){
-            System.out.println(i+" --> Destination: "+ touristRequest.getDestination()+" || Budget: "+ touristRequest.getBudget() + " By: "+ touristRequest.touristName   + " || Status: "+ (touristRequest.getIsPending() ? "Pending" : ""));
+            System.out.println("\t\t"+i+" --> Destination: "+ touristRequest.getDestination()+" || Budget: "+ touristRequest.getBudget() + " By: "+ touristRequest.touristName   + " || Status: "+ (touristRequest.getIsPending() ? "Pending" : ""));
             i++;
         }
         return i;

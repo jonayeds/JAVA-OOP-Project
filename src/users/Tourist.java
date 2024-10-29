@@ -26,10 +26,12 @@ public class Tourist extends UserTemplate {
 
     public void displayAllTourRequests(){
         int i=1;
+        System.out.println("\t\t------------Y O U R   R E Q U E S T S -------------- ");
         for(TouristRequest touristRequest : allTourRequests){
-            System.out.println(i+" --> Destination: "+ touristRequest.getDestination()+" || Budget: "+ touristRequest.getBudget() + " || Status: "+ (touristRequest.getIsPending() ?  "Pending" : (touristRequest.isRejected? "Rejected" : "Accepted")) );
+            System.out.println("\t\t"+i+" --> Destination: "+ touristRequest.getDestination()+" || Budget: "+ touristRequest.getBudget() + " || Status: "+ (touristRequest.getIsPending() ?  "Pending" : (touristRequest.isRejected? "Rejected" : "Accepted")) );
             i++;
         }
+        System.out.println("------------------------------------------------------------");
     }
 
 

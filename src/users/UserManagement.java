@@ -21,6 +21,13 @@ public class UserManagement {
         return tourist;
     }
 
+    public Tourist getTouristById(int id){
+        for(Tourist tourist : touristList){
+            if(tourist.id == id) return tourist;
+        }
+        return null;
+    }
+
     public Admin getAdmin(String email, String password){
         Admin admin = null;
         for(Admin user : adminList){
