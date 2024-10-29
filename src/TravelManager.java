@@ -74,8 +74,8 @@ public class TravelManager {
                 while(!isValid){
                     System.out.print("Enter Password: ");
                     password = sc.nextLine();
-                    isValid = userManagement.validateEmail(password);
-                    if(!isValid) System.out.println("Invalid Email");
+                    isValid = userManagement.validatePassword(password);
+                    if(!isValid) System.out.println("Invalid Password");
                 }
 
 

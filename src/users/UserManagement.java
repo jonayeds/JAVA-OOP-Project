@@ -82,8 +82,14 @@ public class UserManagement {
     }
 
     public boolean validatePassword(String password){
-        String passwordRegex = "^$";
-        return password.matches(passwordRegex);
+        String allowedCharacters = "[a-zA-Z0-9~!@#$%^&*/()\\.]*";
+        boolean isValid = true;
+        if(password.length() < 6) return false;
+        if(!password.matches("^"+ allowedCharacters+ "[a-z]+"+ allowedCharacters +"$")) return false;
+        if(!password.matches("^"+ allowedCharacters+ "[0-9]+"+ allowedCharacters +"$")) return false;
+        if(!password.matches("^"+ allowedCharacters+ "[A-Z]+"+ allowedCharacters +"$")) return false;
+        if(!password.matches("^"+ allowedCharacters+ "[~!@#$%^&*/()\\.]+"+ allowedCharacters +"$")) return false;
+        return true;
     }
 
     public void addTourist(Tourist tourist){
